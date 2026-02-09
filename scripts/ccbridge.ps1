@@ -4,8 +4,9 @@
 # ccstatusline pipes Claude Code JSON to stdin and displays the output.
 # This script reads the active vibe + stdin context to pick a quip.
 #
-# ccstatusline widget config:
-#   { "type": "custom-command", "commandPath": "~/.moxie/ccbridge.ps1", "maxWidth": 60, "timeout": 500, "preserveColors": true }
+# ccstatusline widget config (Windows):
+#   { "type": "custom-command", "commandPath": "pwsh -ExecutionPolicy Bypass -File C:/Users/USERNAME/.moxie/ccbridge.ps1", "maxWidth": 120, "timeout": 3000, "preserveColors": true }
+# Note: pwsh cold start on Windows needs ~1-2s. 3000ms timeout is safe. Subsequent calls hit cache.
 
 param()
 

@@ -57,8 +57,8 @@ Formal schema spec for moxie vibe JSON files. All built-in vibes meet these requ
 | `chill` | Context < 30% | 3 |
 | `warm` | Context 30-70% | 3 |
 | `hot` | Context > 70% | 3 |
-| `late` | 9pm - 3am | 3 |
-| `morning` | 3am - 7am | 3 |
+| `late` | 10pm - 5am | 3 |
+| `morning` | 5am - 8am | 3 |
 | `friday` | It's Friday | 3 |
 | `weekend` | Saturday or Sunday | 3 |
 | `worktree` | In a git worktree | 3 |
@@ -95,3 +95,26 @@ printf '\033[38;5;44mThis is color 44\033[0m\n'
 ```
 
 Useful ranges: 16-21 (blues), 22-28 (greens), 124-131 (reds/browns), 166-173 (oranges), 196-201 (bright reds), 202-214 (oranges/ambers), 220-226 (golds), 240-255 (grays).
+
+## Layout Options
+
+Vibes can optionally include a `layout` object to control statusline rendering:
+
+```json
+{
+  "layout": {
+    "quipPosition": "right"
+  }
+}
+```
+
+| Field | Values | Default | Effect |
+|-------|--------|---------|--------|
+| `quipPosition` | `"right"` | `"right"` | Right-aligned quip with dynamic spacing (default) |
+| | `"inline"` | | Quip appears inline after branch, bullet-separated |
+
+**Inline layout**: `Guide ██████░░░░ 60% · main · The trail grows steeper.`
+
+**Right layout** (default): `Guide ██████░░░░ 60% · main                    The trail grows steeper.`
+
+The `layout` field is entirely optional. Omitting it gives you the default right-aligned behavior.

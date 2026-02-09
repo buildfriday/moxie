@@ -65,8 +65,8 @@ Every quip should feel like the same character speaking. If your vibe is a pirat
 | `chill` | Context < 30% |
 | `warm` | Context 30-70% |
 | `hot` | Context > 70% |
-| `late` | 9pm - 3am |
-| `morning` | 3am - 7am |
+| `late` | 10pm - 5am |
+| `morning` | 5am - 8am |
 | `friday` | It's Friday |
 | `weekend` | Saturday or Sunday |
 | `fresh` | Session < 5 minutes |

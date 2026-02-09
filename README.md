@@ -69,10 +69,14 @@ A statusline that actually tells you something, and sounds like someone while do
 4. **Detect existing statusline tools:**
    - Check if `~/.config/ccstatusline/settings.json` exists
    - **If ccstatusline found**: Install the bridge script instead of the full statusline:
-     - Save `scripts/ccbridge.sh` (or `.ps1`) to `~/.moxie/ccbridge.sh`
-     - Add a `custom-command` widget to ccstatusline's config pointing to the bridge
+     - Save `scripts/ccbridge.sh` (or `.ps1`) to `~/.moxie/`
+     - Add a `custom-command` widget to ccstatusline's `settings.json`:
+       - **Windows**: `"commandPath": "pwsh -ExecutionPolicy Bypass -File C:/Users/USERNAME/.moxie/ccbridge.ps1"`, `"timeout": 3000` (pwsh cold start needs ~1-2s)
+       - **Mac/Linux**: `"commandPath": "bash ~/.moxie/ccbridge.sh"`, `"timeout": 500`
+       - Set `"maxWidth": 120` (ANSI escape codes count against the character budget, so 60 truncates)
      - Skip step 5's statusLine setup (ccstatusline handles the statusline display)
      - Still apply spinnerVerbs in step 6 (those work independently)
+     - **Note**: If ccstatusline hasn't run yet, start a Claude Code session first to let it generate `~/.config/ccstatusline/settings.json`, then add the moxie widget. ccstatusline overwrites its config on first run.
    - **If no ccstatusline**: Continue with full moxie statusline setup below
 5. Copy the statusline script:
    - **Mac/Linux**: Save `scripts/statusline.sh` to `~/.moxie/statusline.sh`
@@ -94,7 +98,7 @@ A statusline that actually tells you something, and sounds like someone while do
 
 Windows `statusLine.command`:
 ```
-powershell -ExecutionPolicy Bypass -File C:/Users/USERNAME/.moxie/statusline.ps1
+pwsh -ExecutionPolicy Bypass -File C:/Users/USERNAME/.moxie/statusline.ps1
 ```
 
 7. Tell the user what they got.
@@ -188,9 +192,14 @@ The format:
     "late": ["Late night quips"],
     "hot,late": ["Burning context at 2am quips"],
     "dirty": ["Uncommitted changes quips"]
+  },
+  "layout": {
+    "quipPosition": "right"
   }
 }
 ```
+
+The `layout` field is optional. Set `quipPosition` to `"inline"` for compact display, or omit the field entirely for default right-aligned quips.
 
 Colors are 256-color ANSI codes. Preview in your terminal:
 ```bash
@@ -213,7 +222,7 @@ It outputs a single ANSI-colored line with:
 - Context percentage
 - Git branch + ahead/behind indicators
 - Worktree name (if applicable)
-- Right-aligned quip (contextual, rotated every 45s)
+- Quip (contextual, rotated every 45s) -- right-aligned by default, or inline with `layout.quipPosition: "inline"`
 
 ### Quip Tags
 
@@ -223,7 +232,7 @@ Quips are tagged by context. The statusline builds a tag set from current condit
 |-----|-----------|
 | `any` | Always active |
 | `chill` / `warm` / `hot` | Context < 30% / 30-70% / > 70% |
-| `late` / `morning` | 10pm-5am / 5am-8am |
+| `late` / `morning` | 10pm - 5am / 5am - 8am |
 | `friday` / `weekend` | Day of week |
 | `fresh` / `marathon` | Session < 5min / > 60min |
 | `dirty` / `clean` | Git working tree state |
@@ -231,6 +240,17 @@ Quips are tagged by context. The statusline builds a tag set from current condit
 | `worktree` | In a git worktree |
 
 Combo tags like `"hot,late"` match when **all** listed tags are active. Use them for quips that nail a specific moment -- burning context at 2am hits different than burning context at noon.
+
+### Quip Layout
+
+By default, quips are right-aligned with dynamic spacing. Set `layout.quipPosition` to `"inline"` for a compact layout where the quip follows the branch name:
+
+```
+Inline:  Guide ██████░░░░ 60% · main · The trail grows steeper.
+Right:   Guide ██████░░░░ 60% · main                    The trail grows steeper.
+```
+
+The `layout` field is optional -- omit it for the default right-aligned behavior. See the [Style Guide](STYLE_GUIDE.md) for full details.
 
 ### Spinner Verbs
 
@@ -258,6 +278,8 @@ Replace `~/.moxie/active.json` and update `spinnerVerbs` in `~/.claude/settings.
 cp vibes/noir.json ~/.moxie/active.json
 # Then update spinnerVerbs in settings.json with the new verbs
 ```
+
+Claude Code hot-reloads `settings.json` -- the statusline and quips update without restarting your session. Spinner verbs update on the next tool call.
 
 To reset to defaults, delete `~/.moxie/active.json` and remove `spinnerVerbs` and `statusLine` from settings.
 
@@ -288,6 +310,9 @@ Yes. Just use the `spinnerVerbs` from any vibe -- those work standalone in `~/.c
 
 **What if I just want spinner verbs, no quips?**
 Skip the statusline setup entirely. Just copy `spinnerVerbs` from a vibe into your settings.
+
+**Does this work with ccstatusline?**
+Yes. Use the bridge scripts (`ccbridge.ps1` / `ccbridge.sh`) as a `custom-command` widget. The bridge outputs agent name + quip; ccstatusline handles the rest. See the [Quick Start](#quick-start) setup for details.
 
 **Does this work on Claude Desktop?**
 No. Moxie is for Claude Code (the CLI). It works in bare terminal, VS Code terminal, and JetBrains terminal.

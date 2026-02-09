@@ -6,7 +6,7 @@
 # This script reads the active vibe + stdin context to pick a quip.
 #
 # ccstatusline widget config:
-#   { "type": "custom-command", "commandPath": "~/.moxie/ccbridge.sh", "maxWidth": 60, "timeout": 500, "preserveColors": true }
+#   { "type": "custom-command", "commandPath": "bash ~/.moxie/ccbridge.sh", "maxWidth": 120, "timeout": 500, "preserveColors": true }
 #
 # Requires: jq
 

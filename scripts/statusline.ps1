@@ -2,7 +2,7 @@
 # Reads personality from ~/.moxie/active.json, shows metrics + git info + rotating quip
 #
 # Usage: Set in ~/.claude/settings.json:
-#   "statusLine": { "type": "command", "command": "powershell -ExecutionPolicy Bypass -File ~/.moxie/statusline.ps1" }
+#   "statusLine": { "type": "command", "command": "pwsh -ExecutionPolicy Bypass -File ~/.moxie/statusline.ps1" }
 #
 # Input: JSON on stdin from Claude Code (context_window.used_percentage, etc.)
 # Output: Single-line ANSI status bar
@@ -221,6 +221,12 @@ if (-not $quipCacheValid -and $vibe -and $vibe.quips) {
     } catch {}
 }
 
+# --- Layout option ---
+$quipPosition = 'right'
+if ($vibe -and $vibe.layout -and $vibe.layout.quipPosition) {
+    $quipPosition = $vibe.layout.quipPosition
+}
+
 # --- Build status line ---
 $upArrow = [char]0x2191
 $bullet = "$($C.Dim)$([char]0x00B7)$($C.Reset)"
@@ -241,13 +247,16 @@ if ($gitInfo.worktree) {
     $parts += "$($C.Accent)$wtName$($C.Reset)"
 }
 
-$line1 = $parts -join ' '
-
-# Calculate spacing for right-aligned quip
-$visibleLeft = ($line1 -replace "$esc\[[0-9;]*m", '').Length
-$termWidth = if ($env:COLUMNS) { [int]$env:COLUMNS } else { try { [Console]::WindowWidth } catch { 120 } }
-$ccMargin = 30
-$gap = $termWidth - $visibleLeft - $quip.Length - $ccMargin
-if ($gap -lt 2) { $gap = 2 }
-
-Write-Host "$line1$(' ' * $gap)$($C.Quip)$quip$($C.Reset)"
+if ($quipPosition -eq 'inline' -and $quip) {
+    $parts += $bullet
+    $parts += "$($C.Quip)$quip$($C.Reset)"
+    Write-Host ($parts -join ' ')
+} else {
+    $line1 = $parts -join ' '
+    $visibleLeft = ($line1 -replace "$esc\[[0-9;]*m", '').Length
+    $termWidth = if ($env:COLUMNS) { [int]$env:COLUMNS } else { try { [Console]::WindowWidth } catch { 120 } }
+    $ccMargin = 30
+    $gap = $termWidth - $visibleLeft - $quip.Length - $ccMargin
+    if ($gap -lt 2) { $gap = 2 }
+    Write-Host "$line1$(' ' * $gap)$($C.Quip)$quip$($C.Reset)"
+}

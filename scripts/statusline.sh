@@ -239,6 +239,13 @@ if [[ -z "$quip" && -f "$VIBE_FILE" ]] && command -v jq &>/dev/null; then
     echo -n "$quip" > "$quip_cache" 2>/dev/null
 fi
 
+# --- Layout option ---
+quip_position="right"
+if [[ -f "$VIBE_FILE" ]] && command -v jq &>/dev/null; then
+    qp=$(jq -r '.layout.quipPosition // "right"' "$VIBE_FILE" 2>/dev/null)
+    [[ -n "$qp" && "$qp" != "null" ]] && quip_position="$qp"
+fi
+
 # --- Build status line ---
 bullet="${c_dim}·${c_reset}"
 line=""
@@ -257,15 +264,20 @@ if [[ "$git_worktree" == "true" ]]; then
     line+=" ${bullet} ${c_accent}${wt_name}${c_reset}"
 fi
 
-# Strip ANSI to get visible width
-visible_left=$(echo -e "$line" | sed 's/\x1b\[[0-9;]*m//g' | wc -c)
-visible_left=$(( visible_left - 1 ))  # subtract trailing newline
+if [[ "$quip_position" == "inline" && -n "$quip" ]]; then
+    line+=" ${bullet} ${c_quip}${quip}${c_reset}"
+    echo -e "${line}"
+else
+    # Strip ANSI to get visible width
+    visible_left=$(echo -e "$line" | sed 's/\x1b\[[0-9;]*m//g' | wc -c)
+    visible_left=$(( visible_left - 1 ))  # subtract trailing newline
 
-term_width="${COLUMNS:-120}"
-cc_margin=30
-gap=$(( term_width - visible_left - ${#quip} - cc_margin ))
-(( gap < 2 )) && gap=2
+    term_width="${COLUMNS:-120}"
+    cc_margin=30
+    gap=$(( term_width - visible_left - ${#quip} - cc_margin ))
+    (( gap < 2 )) && gap=2
 
-padding=$(printf '%*s' "$gap" '')
+    padding=$(printf '%*s' "$gap" '')
 
-echo -e "${line}${padding}${c_quip}${quip}${c_reset}"
+    echo -e "${line}${padding}${c_quip}${quip}${c_reset}"
+fi
