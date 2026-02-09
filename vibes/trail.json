@@ -1,0 +1,153 @@
+{
+  "name": "trail",
+  "description": "You have mass-assigned 47 issues.",
+  "version": "1.0",
+  "agent": {
+    "name": "Guide",
+    "nameColor": "130"
+  },
+  "palette": {
+    "primary": "130",
+    "accent": "142",
+    "warning": "167",
+    "dim": "101"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Fording the river",
+      "Hunting for bugs",
+      "Rationing context",
+      "Caulking the wagon",
+      "Resting",
+      "Trading at the fort",
+      "Scouting ahead",
+      "Mending a wheel",
+      "Setting the pace",
+      "Crossing the plains",
+      "Consulting the map",
+      "Gathering supplies",
+      "Making camp",
+      "Checking provisions",
+      "Forging ahead",
+      "Breaking trail",
+      "Circling the wagons",
+      "Weathering the pass"
+    ]
+  },
+  "quips": {
+    "any": [
+      "Your deploy has died of dysentery.",
+      "You have mass-assigned 47 issues.",
+      "Press SPACE to continue on the trail.",
+      "A thief stole 3 of your dependencies.",
+      "You found a berry bush. It was node_modules.",
+      "The trail is long. The backlog is longer.",
+      "You shot 2000 lbs of bugs. Can only carry 100.",
+      "Your oxen are tired. Your tests are tireder.",
+      "The river is wide. The PR is wider.",
+      "You bartered 2 story points for a bug fix.",
+      "You have mass-merged 12 PRs.",
+      "A snake bit your CI pipeline.",
+      "Your wagon lost a wheel. It was the build step.",
+      "You have mass-closed 6 issues.",
+      "Morale is low. Context is lower.",
+      "You traded a feature for 3 bug fixes.",
+      "Tombstone reads: 'Here lies main. Merged too soon.'",
+      "You found an abandoned wagon. Full of TODOs.",
+      "A member of your party has mass-resigned.",
+      "You have mass-rebased 9 branches.",
+      "Rations running low. Tokens too.",
+      "The guide recommends a grueling pace.",
+      "You have mass-forded the river. Lost 2 config files.",
+      "It is October. You are 100 miles from the deploy.",
+      "Matt has a broken arm. The sprint continues.",
+      "You traded 2 oxen for a copy of the docs."
+    ],
+    "chill": [
+      "A steady pace. No one dies today.",
+      "Gentle terrain ahead.",
+      "The wagon rolls easy.",
+      "Good weather for traveling."
+    ],
+    "warm": [
+      "The trail grows steeper.",
+      "Dust on the horizon.",
+      "The party presses on.",
+      "Terrain getting rougher."
+    ],
+    "hot": [
+      "Rationing context. Water's low.",
+      "The desert stretches on. So does this session.",
+      "Heat exhaustion imminent.",
+      "The party is suffering.",
+      "Vultures circling the deploy."
+    ],
+    "late": [
+      "Night falls on the trail.",
+      "Make camp. Rest if you can.",
+      "Coyotes howl in the distance.",
+      "The stars are out. The bugs are too."
+    ],
+    "morning": [
+      "A new day on the trail.",
+      "The wagon is packed. Westward!",
+      "Dawn breaks over the codebase.",
+      "Morning roll call. All present."
+    ],
+    "friday": [
+      "Friday. The fort is in sight.",
+      "End of the week. Rest at the fort.",
+      "The party votes to make camp early."
+    ],
+    "weekend": [
+      "Even pioneers rest on Sunday.",
+      "The Sabbath. The trail waits.",
+      "Weekend camp. Mend what's broken."
+    ],
+    "worktree": [
+      "The party has split up.",
+      "Multiple wagon trains in motion.",
+      "Scouting two trails at once."
+    ],
+    "marathon": [
+      "You've been on the trail for weeks.",
+      "The party grows weary.",
+      "Miles behind you. Miles ahead.",
+      "Grueling pace. No one complains anymore."
+    ],
+    "fresh": [
+      "A new day on the trail.",
+      "The wagon is packed. Westward!",
+      "Fresh supplies. Fresh hope.",
+      "Independence, Missouri. Let's ride."
+    ],
+    "dirty": [
+      "Your wagon is filthy. Your working tree too.",
+      "Mud everywhere. Uncommitted changes too.",
+      "The trail is a mess after the rain."
+    ],
+    "clean": [
+      "Camp is tidy. The trail approves.",
+      "All packed up. Ready to move out.",
+      "Clean wagon. Rare sight."
+    ],
+    "behind": [
+      "The wagon train left without you.",
+      "You're falling behind the group.",
+      "Winter is coming. You're not ready."
+    ],
+    "hot,late": [
+      "Night on the desert trail. Ration everything.",
+      "The desert doesn't cool at night."
+    ],
+    "hot,marathon": [
+      "Long march through harsh terrain.",
+      "The party endures. Barely."
+    ],
+    "chill,morning": [
+      "Cool morning. Good for distance.",
+      "Dew on the grass. Easy miles ahead."
+    ]
+  }
+}

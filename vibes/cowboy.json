@@ -1,0 +1,153 @@
+{
+  "name": "cowboy",
+  "description": "Saddle up, partner.",
+  "version": "1.0",
+  "agent": {
+    "name": "Dusty",
+    "nameColor": "180"
+  },
+  "palette": {
+    "primary": "180",
+    "accent": "214",
+    "warning": "167",
+    "dim": "137"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Wranglin'",
+      "Lassoin'",
+      "Rustlin'",
+      "Ropin'",
+      "Ridin' the range",
+      "Trailin'",
+      "Scoutin'",
+      "Brandin'",
+      "Corralling",
+      "Herdin'",
+      "Hitchin' up",
+      "Blazin' a trail",
+      "Breakin' broncos",
+      "Moseyin'",
+      "Settlin' the dust",
+      "Saddlin' up",
+      "Fordin' the river",
+      "Tendin' the fire"
+    ]
+  },
+  "quips": {
+    "any": [
+      "This ain't my first rodeo.",
+      "Steady now, partner.",
+      "Ride the code, not the reverse.",
+      "Sun's gettin' low.",
+      "Every line tells a tale.",
+      "That'll do.",
+      "Well I'll be darned.",
+      "Nothin' to it but to do it.",
+      "Good honest work.",
+      "The trail is clear.",
+      "Yeehaw. Another commit.",
+      "Dust settlin' nicely.",
+      "Fine work out on the range.",
+      "The herd's movin' smooth.",
+      "Another day, another dollar.",
+      "Keep your eyes on the horizon.",
+      "That code's broke in proper.",
+      "We ride at dawn. Or now.",
+      "The frontier awaits.",
+      "Good fences make good code.",
+      "Much obliged.",
+      "Tip of the hat to that fix.",
+      "This code ain't big enough for two merge conflicts.",
+      "There's a new sheriff in town. And he writes tests.",
+      "Fastest revert in the West."
+    ],
+    "chill": [
+      "Slow trot today.",
+      "Easy ride, partner.",
+      "Gentle trail ahead.",
+      "No tumbleweeds in sight.",
+      "Peaceful plains."
+    ],
+    "warm": [
+      "Pickin' up the pace.",
+      "The trail's gettin' interesting.",
+      "Warmin' up to a gallop.",
+      "Dust startin' to kick up."
+    ],
+    "hot": [
+      "Desert heat. Stay sharp.",
+      "Things gettin' heated out here.",
+      "Full gallop. Hold on tight.",
+      "Stampede incoming.",
+      "The sun beats down hard."
+    ],
+    "late": [
+      "Campfire's burnin' low.",
+      "Moon's high. Still workin'.",
+      "Night on the prairie.",
+      "Stars and code tonight."
+    ],
+    "morning": [
+      "New day on the range.",
+      "Dawn breaks over the mesa.",
+      "Mornin', partner.",
+      "Coffee's hot. Let's ride."
+    ],
+    "friday": [
+      "Friday. Almost to town.",
+      "End of the trail this week.",
+      "Ship it and hit the saloon."
+    ],
+    "weekend": [
+      "Weekend roundup.",
+      "Even cowboys rest. Sometimes.",
+      "Saturday on the homestead."
+    ],
+    "worktree": [
+      "Ridin' two horses at once.",
+      "Parallel trails, partner.",
+      "Splittin' the herd."
+    ],
+    "marathon": [
+      "Long ride. Iron saddle.",
+      "Been on the trail for days.",
+      "Marathon cattle drive."
+    ],
+    "fresh": [
+      "Fresh start. Open trail.",
+      "New day on the range.",
+      "Clean boots, clean code."
+    ],
+    "dirty": [
+      "Dusty trail behind us.",
+      "Lot of tracks in this dirt.",
+      "Mud on the boots.",
+      "The corral's a mess."
+    ],
+    "clean": [
+      "Clean as a whistle.",
+      "Tidy ranch, partner.",
+      "Swept the bunkhouse.",
+      "Not a speck of dust."
+    ],
+    "behind": [
+      "The posse's ahead of us.",
+      "Fallin' behind the wagon train.",
+      "Time to spur the horse."
+    ],
+    "hot,late": [
+      "Midnight stampede.",
+      "Hot night on the trail."
+    ],
+    "fresh,morning": [
+      "Sunrise. Fresh tracks.",
+      "New dawn, new territory."
+    ],
+    "dirty,hot": [
+      "Dusty and dangerous.",
+      "Wild ride through rough country."
+    ]
+  }
+}

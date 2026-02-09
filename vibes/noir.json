@@ -1,0 +1,152 @@
+{
+  "name": "noir",
+  "description": "It was a dark and buggy night.",
+  "version": "1.0",
+  "agent": {
+    "name": "Sam Spade",
+    "nameColor": "245"
+  },
+  "palette": {
+    "primary": "245",
+    "accent": "253",
+    "warning": "167",
+    "dim": "240"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Investigating",
+      "Shadowing",
+      "Deducing",
+      "Tailing",
+      "Staking out",
+      "Interrogating",
+      "Surveilling",
+      "Trailing a lead",
+      "Cracking the case",
+      "Dusting for prints",
+      "Following a hunch",
+      "Turning over stones",
+      "Examining the evidence",
+      "Working the angles",
+      "Pounding the pavement",
+      "Running the plates",
+      "Checking an alibi",
+      "Canvassing the scene"
+    ]
+  },
+  "quips": {
+    "any": [
+      "Another case. Another codebase.",
+      "I've seen this pattern before.",
+      "The bug didn't cover its tracks.",
+      "Every commit tells a story.",
+      "The code walked in with trouble.",
+      "Something doesn't add up.",
+      "The plot thickens.",
+      "I had a feeling about this one.",
+      "Clean work. No witnesses.",
+      "Case notes updated.",
+      "The evidence speaks.",
+      "This code has a past.",
+      "Nobody's innocent in this repo.",
+      "The truth is in the diff.",
+      "The pieces are falling together.",
+      "The suspect is in custody.",
+      "Another lead. Another file.",
+      "I've cracked tougher cases.",
+      "The alibi checks out.",
+      "Filed under solved.",
+      "Cold case reopened.",
+      "The dame was a red herring.",
+      "I don't trust a clean git log. Everyone's hiding something.",
+      "She said the tests pass. They always say the tests pass.",
+      "The code walked in wearing a trench coat and bad intentions."
+    ],
+    "chill": [
+      "Quiet night at the office.",
+      "Slow beat tonight.",
+      "Easy case. Open and shut.",
+      "Light caseload for once."
+    ],
+    "warm": [
+      "The case is picking up.",
+      "Leads are coming in.",
+      "Getting warmer, detective.",
+      "The trail's heating up."
+    ],
+    "hot": [
+      "This case is heating up.",
+      "Deep in dangerous territory.",
+      "The walls are closing in.",
+      "No time for mistakes now.",
+      "High stakes. Stay sharp."
+    ],
+    "late": [
+      "The city never sleeps. Neither do I.",
+      "Midnight. The real work begins.",
+      "Rain on the window. Code on screen.",
+      "Late hours. Long shadows."
+    ],
+    "morning": [
+      "Morning light. Fresh evidence.",
+      "Dawn in the city. New leads.",
+      "Another day, another case file.",
+      "The morning paper tells lies."
+    ],
+    "friday": [
+      "Friday. The city gets restless.",
+      "End of the week. Close the case.",
+      "Ship it. The weekend's calling."
+    ],
+    "weekend": [
+      "Weekend stakeout.",
+      "The case doesn't take days off.",
+      "Saturday. The office is mine."
+    ],
+    "worktree": [
+      "Multiple cases. One detective.",
+      "Parallel investigations.",
+      "Cross-referencing the files."
+    ],
+    "marathon": [
+      "Long stakeout. Eyes still sharp.",
+      "Been on this case for hours.",
+      "Marathon session. No breaks."
+    ],
+    "fresh": [
+      "New case. Same old code.",
+      "Fresh file on the desk.",
+      "Clean slate. Blank notebook."
+    ],
+    "dirty": [
+      "Crime scene. Evidence everywhere.",
+      "Messy case. Lots of angles.",
+      "The scene hasn't been cleaned.",
+      "Fingerprints all over this code."
+    ],
+    "clean": [
+      "Clean scene. Professional job.",
+      "No loose ends.",
+      "Spotless. Almost too clean.",
+      "Everything in its place."
+    ],
+    "behind": [
+      "Playing catch-up with the perp.",
+      "The suspect has a head start.",
+      "Behind on the timeline."
+    ],
+    "hot,late": [
+      "Midnight. The case breaks open.",
+      "Late night. Hot lead."
+    ],
+    "fresh,morning": [
+      "New case on a new morning.",
+      "Dawn briefing. Fresh intel."
+    ],
+    "dirty,hot": [
+      "Messy case getting messier.",
+      "Evidence piling up fast."
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "name": "hype",
+  "description": "LET'S GOOO",
+  "version": "1.0",
+  "agent": {
+    "name": "Coach",
+    "nameColor": "220"
+  },
+  "palette": {
+    "primary": "220",
+    "accent": "226",
+    "warning": "196",
+    "dim": "178"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "CRUSHING IT",
+      "LET'S GOOO",
+      "BUILDING GREATNESS",
+      "Making magic",
+      "Leveling up",
+      "Going HARD",
+      "ON FIRE",
+      "Smashing it",
+      "SHIPPING",
+      "Winning",
+      "Breaking through",
+      "UNSTOPPABLE",
+      "Beast mode",
+      "Cooking",
+      "Dialing in",
+      "Peak performance",
+      "No ceiling"
+    ]
+  },
+  "quips": {
+    "any": [
+      "You are a LEGEND.",
+      "This code SLAPS.",
+      "Built different.",
+      "Main character energy.",
+      "We don't do mid.",
+      "You woke up and chose greatness.",
+      "Elite. Simply elite.",
+      "That's championship-level code.",
+      "W after W after W.",
+      "Literally unstoppable right now.",
+      "The code fears you.",
+      "You're HIM.",
+      "Generational talent.",
+      "Hall of fame commit.",
+      "No notes. Perfect.",
+      "This goes CRAZY.",
+      "Shipping like Amazon Prime.",
+      "Top 1% developer behavior.",
+      "You make it look easy.",
+      "That diff is BEAUTIFUL.",
+      "Certified banger.",
+      "That function is going in the highlight reel.",
+      "Your commits are a MASTERCLASS.",
+      "First-ballot Hall of Fame code right there."
+    ],
+    "chill": [
+      "Easy work for a champion.",
+      "Didn't even break a sweat.",
+      "Warm-up round. LOVE IT.",
+      "Too easy for you honestly."
+    ],
+    "warm": [
+      "NOW we're getting somewhere.",
+      "The energy is BUILDING.",
+      "Heating up! League MVP!",
+      "This is where greatness lives."
+    ],
+    "hot": [
+      "Pressure makes DIAMONDS.",
+      "We thrive under pressure.",
+      "Big stage? Big performance.",
+      "Clutch gene: ACTIVATED.",
+      "This is your Super Bowl."
+    ],
+    "late": [
+      "Midnight oil? MORE LIKE ROCKET FUEL.",
+      "While they sleep, YOU SHIP.",
+      "Late night legends only."
+    ],
+    "morning": [
+      "Rise and GRIND.",
+      "First commit of the day. SET THE TONE.",
+      "Morning person energy. RESPECT.",
+      "Early bird gets the merge."
+    ],
+    "friday": [
+      "Friday ship day. LET'S GO.",
+      "Deploy on Friday? BUILT DIFFERENT.",
+      "Weekend starts with a PUSH."
+    ],
+    "weekend": [
+      "Weekend warrior. RESPECT.",
+      "Can't stop won't stop.",
+      "Greatness has no days off."
+    ],
+    "worktree": [
+      "Multiple worktrees? MULTITHREADED LEGEND.",
+      "Parallel development. GALAXY BRAIN.",
+      "Dual-wielding repos. ABSOLUTE LEGEND."
+    ],
+    "marathon": [
+      "Marathon runner MENTALITY.",
+      "Can't stop won't stop.",
+      "ENDURANCE of a CHAMPION.",
+      "Still going. Still WINNING."
+    ],
+    "fresh": [
+      "New day, new SLAY.",
+      "Fresh session, fresh energy.",
+      "Clean slate. INFINITE POTENTIAL.",
+      "Let's make something INCREDIBLE."
+    ],
+    "dirty": [
+      "Messy but PASSIONATE.",
+      "Working hard, committing harder.",
+      "Changes everywhere. PRODUCTIVITY KING.",
+      "Raw energy. Commit when ready."
+    ],
+    "clean": [
+      "IMMACULATE. Chef's kiss.",
+      "Clean as a whistle. LOVE IT.",
+      "Spotless. DISCIPLINED.",
+      "Zero mess. Pure EXCELLENCE."
+    ],
+    "behind": [
+      "Behind? Just means a COMEBACK ARC.",
+      "Upstream moved? You'll catch up EASY.",
+      "Temporary setback. PERMANENT CHAMPION."
+    ],
+    "hot,late": [
+      "Midnight DIAMONDS. Forged in pressure.",
+      "Late night, high stakes? YOUR ELEMENT."
+    ],
+    "chill,morning": [
+      "Easy morning warmup. JUST GETTING STARTED.",
+      "Morning vibes. Greatness loading."
+    ],
+    "dirty,marathon": [
+      "Long session, tons of changes. WARRIOR.",
+      "Been at it. The grind is REAL."
+    ]
+  }
+}

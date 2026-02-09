@@ -1,0 +1,152 @@
+{
+  "name": "duke",
+  "description": "Hail to the king, baby.",
+  "version": "1.0",
+  "agent": {
+    "name": "Duke",
+    "nameColor": "196"
+  },
+  "palette": {
+    "primary": "196",
+    "accent": "208",
+    "warning": "226",
+    "dim": "124"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Kicking bugs",
+      "Chewing gum",
+      "Cleaning house",
+      "Locking and loading",
+      "Coming to get you",
+      "Taking names",
+      "Going nuclear",
+      "Bringing the pain",
+      "Wrecking shop",
+      "Making it personal",
+      "Running hot",
+      "Suiting up",
+      "Doing damage",
+      "Showing no mercy",
+      "Going loud",
+      "Blasting through",
+      "Flexing",
+      "Stomping"
+    ]
+  },
+  "quips": {
+    "any": [
+      "Hail to the king, baby.",
+      "Time to kick code and chew bubblegum.",
+      "I've got balls of steel.",
+      "Come get some.",
+      "Damn, I'm good.",
+      "All outta gum.",
+      "Let's rock.",
+      "Piece of cake.",
+      "Looks like cleanup duty.",
+      "Nobody steals our bugs.",
+      "Gonna rip its head off.",
+      "Your face, your code.",
+      "Blow it out your airlock.",
+      "What are you waiting for? Christmas?",
+      "I ain't afraid of no code.",
+      "Ready for action.",
+      "Let God sort 'em out.",
+      "My boot, your bug.",
+      "Shake it, baby.",
+      "Groovy.",
+      "It's down to you and me.",
+      "Get back to work, you slackers!",
+      "After a few days of R&R... I'll be ready for more action!",
+      "It's time to abort your whole freaking species.",
+      "Nobody messes with my deploys."
+    ],
+    "chill": [
+      "Easy mission. Barely need my guns.",
+      "Light work. Hardly broke a sweat.",
+      "Warming up. This ain't even the real fight.",
+      "Baby stuff."
+    ],
+    "warm": [
+      "Now we're talking.",
+      "Getting interesting.",
+      "Locked and loaded.",
+      "Things are picking up."
+    ],
+    "hot": [
+      "Things are heating up. Good.",
+      "Running hot? I'm always hot.",
+      "Now THIS is a fight.",
+      "Bring it on. All of it.",
+      "Maximum firepower."
+    ],
+    "late": [
+      "The night is young. Unlike these bugs.",
+      "After dark? That's when I do my best work.",
+      "Midnight. Time to party.",
+      "Nighttime operations. My specialty."
+    ],
+    "morning": [
+      "Rise and grind, baby.",
+      "Morning. Time to kick something.",
+      "Woke up ready for action.",
+      "First light. First fight."
+    ],
+    "friday": [
+      "TGIF. Time to blow something up.",
+      "Friday. Ship it and hit the bar.",
+      "End of the week. Victory lap."
+    ],
+    "weekend": [
+      "Weekends are for warriors.",
+      "No days off when you're the king.",
+      "Saturday? I don't rest."
+    ],
+    "worktree": [
+      "Multiple targets. No problem.",
+      "Two fights at once. Even better.",
+      "Dual wielding worktrees."
+    ],
+    "marathon": [
+      "I can do this all day.",
+      "Still standing. Still coding.",
+      "They can't outlast me.",
+      "Marathon? I call it Tuesday."
+    ],
+    "fresh": [
+      "Time to kick some code.",
+      "Born ready. Let's go.",
+      "New fight. Same result.",
+      "Fresh meat."
+    ],
+    "dirty": [
+      "This place is a mess. My kind of mess.",
+      "Dirty work. My specialty.",
+      "War is messy. So is this repo."
+    ],
+    "clean": [
+      "Spotless. Like my record.",
+      "All clean. Too easy.",
+      "Mission accomplished."
+    ],
+    "behind": [
+      "They got a head start. Won't matter.",
+      "Behind? I'll catch up. I always do.",
+      "Lead doesn't matter when you're the king."
+    ],
+    "hot,late": [
+      "Midnight firefight. My favorite.",
+      "Late and hot. Just how I like it."
+    ],
+    "fresh,morning": [
+      "New morning, new targets.",
+      "Dawn patrol. Lock and load."
+    ],
+    "dirty,hot": [
+      "Hot mess? I eat those for breakfast.",
+      "Maximum chaos. Maximum Duke."
+    ]
+  }
+}

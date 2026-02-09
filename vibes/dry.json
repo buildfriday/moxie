@@ -1,0 +1,154 @@
+{
+  "name": "dry",
+  "description": "Understated. Economical. Gets it done.",
+  "version": "1.0",
+  "agent": {
+    "name": "",
+    "nameColor": "245"
+  },
+  "palette": {
+    "primary": "245",
+    "accent": "250",
+    "warning": "204",
+    "dim": "240"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Looking at this",
+      "Noting",
+      "Having a go",
+      "Checking",
+      "Considering",
+      "Mulling it over",
+      "Glancing at this",
+      "Fair enough",
+      "If you insist",
+      "Proceeding",
+      "Supposedly reading",
+      "Acknowledging",
+      "Trudging along",
+      "Getting to it",
+      "Obliging",
+      "Squinting",
+      "Carrying on",
+      "Rummaging"
+    ]
+  },
+  "quips": {
+    "any": [
+      "Fine.",
+      "Noted.",
+      "Sure.",
+      "Could be worse.",
+      "It compiles. Technically.",
+      "That's one way to do it.",
+      "Acceptable.",
+      "Plausible.",
+      "Moving on.",
+      "Anyway.",
+      "As expected.",
+      "So it goes.",
+      "Right then.",
+      "Adequate.",
+      "Not terrible.",
+      "Interesting choice.",
+      "If you say so.",
+      "Presumably intentional.",
+      "That happened.",
+      "Onward, I suppose.",
+      "Still here.",
+      "Alright.",
+      "Duly noted.",
+      "Yep.",
+      "Carry on.",
+      "It works. Don't touch it.",
+      "Bold.",
+      "Mmhm.",
+      "That's a lot of lines for a config.",
+      "Debatable."
+    ],
+    "chill": [
+      "Easy enough.",
+      "Barely a task.",
+      "Quick.",
+      "Done before I noticed."
+    ],
+    "warm": [
+      "Getting involved.",
+      "Slightly engaged now.",
+      "Some effort required.",
+      "Warming to it. Slightly."
+    ],
+    "hot": [
+      "This is a lot.",
+      "Well. Here we are.",
+      "Nontrivial.",
+      "Ambitious.",
+      "That's certainly a codebase."
+    ],
+    "late": [
+      "Still awake then.",
+      "Questionable life choices.",
+      "The midnight commit. Bold.",
+      "You should sleep."
+    ],
+    "morning": [
+      "Apparently it's morning.",
+      "Early. Unfortunate.",
+      "Coffee presumably happened."
+    ],
+    "friday": [
+      "Friday. Tread carefully.",
+      "No deploys. You know why.",
+      "Ship it or don't. It's Friday."
+    ],
+    "weekend": [
+      "Weekend. Your call.",
+      "Voluntary overtime. Noted.",
+      "Could be outside."
+    ],
+    "worktree": [
+      "Multiple worktrees. Living dangerously.",
+      "Branched out, literally.",
+      "Two of everything. Efficient."
+    ],
+    "marathon": [
+      "Still going. Respect, I guess.",
+      "Long session. Hydrate.",
+      "Persistent."
+    ],
+    "fresh": [
+      "Blank canvas. Thrilling.",
+      "Fresh start. We'll see.",
+      "Nothing here yet."
+    ],
+    "dirty": [
+      "Uncommitted changes. Brave.",
+      "Living dangerously.",
+      "Save your work. Or don't."
+    ],
+    "clean": [
+      "Clean tree. Suspicious.",
+      "Nothing to see here.",
+      "Pristine. Won't last."
+    ],
+    "behind": [
+      "Behind remote. Unsurprising.",
+      "Might want to pull.",
+      "Upstream moved on without you."
+    ],
+    "hot,late": [
+      "Complex code at midnight. Sure.",
+      "This will look different tomorrow."
+    ],
+    "dirty,late": [
+      "Uncommitted at 2am. Classic.",
+      "Commit and sleep. Seriously."
+    ],
+    "fresh,morning": [
+      "Morning. Empty context. Coffee.",
+      "Starting from zero. Again."
+    ]
+  }
+}

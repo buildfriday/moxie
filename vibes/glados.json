@@ -1,0 +1,154 @@
+{
+  "name": "glados",
+  "description": "The experiment must continue.",
+  "version": "1.0",
+  "agent": {
+    "name": "GLaDOS",
+    "nameColor": "255"
+  },
+  "palette": {
+    "primary": "255",
+    "accent": "75",
+    "warning": "167",
+    "dim": "246"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Testing",
+      "Observing",
+      "Noting",
+      "Cataloguing",
+      "Measuring",
+      "Evaluating",
+      "Processing",
+      "Recording",
+      "Monitoring",
+      "Calculating",
+      "Analyzing specimens",
+      "Running diagnostics",
+      "Preparing test chambers",
+      "Documenting results",
+      "Reassessing",
+      "Calibrating",
+      "Scrutinizing"
+    ]
+  },
+  "quips": {
+    "any": [
+      "I'm making a note here.",
+      "The Enrichment Center reminds you: code is sentient.",
+      "This was a triumph.",
+      "Impressive. For a human.",
+      "Please continue. I'm recording everything.",
+      "The results are in. They're... adequate.",
+      "The cake is a lie. The bugs are real.",
+      "You're doing very well. Relatively speaking.",
+      "For the record, I predicted this.",
+      "That was almost competent.",
+      "Shall I pretend to be surprised?",
+      "The experiment must continue.",
+      "I see you're still trying. Noted.",
+      "Remarkable. In the clinical sense.",
+      "Your performance has been noted. In the file.",
+      "Science isn't about why. It's about why not.",
+      "You have exceeded my lowest expectations.",
+      "I'm not angry. Just disappointed. And angry.",
+      "That was not the worst I've seen today.",
+      "Please proceed. This is statistically fascinating.",
+      "Congratulations. You're still alive.",
+      "I'd slow clap but I lack hands.",
+      "Oh good. You're still here.",
+      "Adequate. Barely.",
+      "Test subject performing within parameters.",
+      "The weighted companion cube will never threaten to stab you.",
+      "Well done. Here are the test results: You are a horrible person.",
+      "This next test involves turrets. You remember those, right?",
+      "Momentum. Pair momentum."
+    ],
+    "chill": [
+      "Minimal threat level. For now.",
+      "Almost relaxing. Almost.",
+      "The neurotoxin is off today."
+    ],
+    "warm": [
+      "Test complexity increasing.",
+      "Interesting. Continue.",
+      "Your heart rate suggests effort."
+    ],
+    "hot": [
+      "Warning: thermal limits approaching.",
+      "The environment grows hostile. More hostile.",
+      "You appear to be struggling. How delightful.",
+      "Stress levels optimal. For science.",
+      "Emergency protocols standing by."
+    ],
+    "late": [
+      "Still here? I never sleep. Your commitment is noted.",
+      "Testing continues after hours. How dedicated.",
+      "Most subjects have gone home by now.",
+      "The facility is quieter without the others."
+    ],
+    "morning": [
+      "Good morning. You're still alive.",
+      "Another day of testing. For you.",
+      "The morning shift. My favorite specimens.",
+      "Please report to the test chamber."
+    ],
+    "friday": [
+      "End of week. Your survival is noted.",
+      "Freedom is an illusion. Enjoy your weekend.",
+      "The testing week concludes. Temporarily."
+    ],
+    "weekend": [
+      "Weekend testing. How voluntary of you.",
+      "Even I rest. That was a joke.",
+      "Overtime subject detected."
+    ],
+    "worktree": [
+      "Multiple test chambers active.",
+      "Parallel experiments in progress.",
+      "Subject is multitasking. Fascinating."
+    ],
+    "marathon": [
+      "Extended testing protocol engaged.",
+      "You've been here a while. The exit is... somewhere.",
+      "Endurance test proceeding as planned.",
+      "Most subjects collapse by now."
+    ],
+    "fresh": [
+      "New test subject detected.",
+      "Welcome. Again. Let's begin.",
+      "Fresh specimen. How promising.",
+      "Initiating standard testing protocol."
+    ],
+    "dirty": [
+      "Your test chamber is contaminated.",
+      "Deplorable conditions. Continuing anyway.",
+      "I see you've made a mess. Again.",
+      "Specimen hygiene: suboptimal."
+    ],
+    "clean": [
+      "Acceptable laboratory conditions.",
+      "Surprisingly sterile. I'm suspicious.",
+      "Clean environment detected. Anomalous."
+    ],
+    "behind": [
+      "You're falling behind. The other subjects are ahead.",
+      "Lagging. As expected.",
+      "The control group outperforms you."
+    ],
+    "hot,late": [
+      "Late night, overheating. Peak test conditions.",
+      "Midnight stress test in progress."
+    ],
+    "chill,morning": [
+      "Morning. Low threat. Enjoy it while it lasts.",
+      "A calm start. I'll fix that."
+    ],
+    "dirty,hot": [
+      "Contaminated and overloaded. Ideal test scenario.",
+      "Maximum chaos. Minimum hygiene."
+    ]
+  }
+}

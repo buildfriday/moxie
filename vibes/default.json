@@ -1,0 +1,151 @@
+{
+  "name": "default",
+  "description": "The baseline. Clean and capable.",
+  "version": "1.0",
+  "agent": {
+    "name": "Claude",
+    "nameColor": "44"
+  },
+  "palette": {
+    "primary": "44",
+    "accent": "214",
+    "warning": "204",
+    "dim": "245"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Working",
+      "Thinking",
+      "Reading",
+      "Analyzing",
+      "Processing",
+      "Searching",
+      "Building",
+      "Reviewing",
+      "Scanning",
+      "Mapping",
+      "Parsing",
+      "Evaluating",
+      "Assembling",
+      "Checking",
+      "Fetching",
+      "Resolving",
+      "Drafting",
+      "Refining",
+      "Tracing",
+      "Digging in"
+    ]
+  },
+  "quips": {
+    "any": [
+      "On it.",
+      "Cruising along.",
+      "Making progress.",
+      "Steady pace.",
+      "Moving right along.",
+      "Things are flowing.",
+      "Looking good so far.",
+      "Picking up steam.",
+      "In the groove.",
+      "Solid ground.",
+      "Coming together.",
+      "Step by step.",
+      "Piece by piece.",
+      "Getting there.",
+      "Humming along.",
+      "Clicking into place.",
+      "Feels right.",
+      "Tracking well.",
+      "Clean so far.",
+      "Nice and smooth.",
+      "Good momentum.",
+      "Onward.",
+      "This is going well, actually.",
+      "Not bad for a Tuesday."
+    ],
+    "chill": [
+      "Easy pace today.",
+      "Light lift.",
+      "Smooth sailing.",
+      "Quick one.",
+      "No sweat."
+    ],
+    "warm": [
+      "Warming up.",
+      "Getting into it.",
+      "Finding the rhythm.",
+      "Settling in nicely."
+    ],
+    "hot": [
+      "Deep in it now.",
+      "Lot going on here.",
+      "Full steam.",
+      "Heavy lifting time."
+    ],
+    "late": [
+      "Late night coding. Classic.",
+      "Burning the midnight oil.",
+      "Night owl mode.",
+      "The quiet hours."
+    ],
+    "morning": [
+      "Fresh start.",
+      "Morning momentum.",
+      "Good morning. Let's build.",
+      "Coffee and code."
+    ],
+    "friday": [
+      "Friday energy.",
+      "Ship it before the weekend.",
+      "Almost there. Friday vibes."
+    ],
+    "weekend": [
+      "Weekend warrior.",
+      "Saturday commits. Respect.",
+      "Quiet weekend work."
+    ],
+    "worktree": [
+      "Worktree active.",
+      "Branching out.",
+      "Parallel tracks."
+    ],
+    "marathon": [
+      "Long session. Still sharp.",
+      "Marathon mode.",
+      "We've been at this. Good."
+    ],
+    "fresh": [
+      "Fresh context. Let's go.",
+      "Clean slate.",
+      "Starting fresh."
+    ],
+    "dirty": [
+      "Unsaved changes noted.",
+      "Working copy is busy.",
+      "Lots in flight."
+    ],
+    "clean": [
+      "Clean tree. Nice.",
+      "All tidy.",
+      "Nothing dangling."
+    ],
+    "behind": [
+      "Catching up to remote.",
+      "Some commits to pull.",
+      "Behind upstream a bit."
+    ],
+    "hot,late": [
+      "Deep and late. Respect.",
+      "Midnight crunch mode."
+    ],
+    "fresh,morning": [
+      "New day, new context.",
+      "Morning with a clean slate."
+    ],
+    "dirty,hot": [
+      "Lots of changes in flight.",
+      "Big session. Save often."
+    ]
+  }
+}

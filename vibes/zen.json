@@ -1,0 +1,149 @@
+{
+  "name": "zen",
+  "description": "Calm mind, clean code.",
+  "version": "1.0",
+  "agent": {
+    "name": "",
+    "nameColor": "108"
+  },
+  "palette": {
+    "primary": "108",
+    "accent": "143",
+    "warning": "180",
+    "dim": "242"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Breathing",
+      "Flowing",
+      "Observing",
+      "Contemplating",
+      "Centering",
+      "Listening",
+      "Attending",
+      "Sitting with this",
+      "Reflecting",
+      "Absorbing",
+      "Receiving",
+      "Noticing",
+      "Resting here",
+      "Holding space",
+      "Gathering",
+      "Unwinding",
+      "Letting it arrive",
+      "Being present"
+    ]
+  },
+  "quips": {
+    "any": [
+      "One step at a time.",
+      "The code is patient.",
+      "Breathe. Then commit.",
+      "All is well.",
+      "The path reveals itself.",
+      "Steady and clear.",
+      "Each line, a breath.",
+      "Present and working.",
+      "Calm focus.",
+      "Flowing naturally.",
+      "No rush.",
+      "Trust the process.",
+      "Clarity comes.",
+      "In good time.",
+      "The work unfolds.",
+      "Quietly progressing.",
+      "Peace in the details.",
+      "Grounded.",
+      "Simple and true.",
+      "Let it settle.",
+      "Unhurried.",
+      "Ease into it.",
+      "Space to think.",
+      "The compiler is also breathing.",
+      "Even the linter finds peace."
+    ],
+    "chill": [
+      "Light as air.",
+      "Gentle work.",
+      "A small kindness.",
+      "Effortless."
+    ],
+    "warm": [
+      "Warming gently.",
+      "Energy rising.",
+      "Finding the flow.",
+      "Settling into rhythm."
+    ],
+    "hot": [
+      "Deep water. Swim steady.",
+      "Stay centered.",
+      "Complexity is natural.",
+      "Patience with the weight."
+    ],
+    "late": [
+      "The night is quiet.",
+      "Stars and semicolons.",
+      "Rest when ready.",
+      "Gentle midnight work."
+    ],
+    "morning": [
+      "A new day opens.",
+      "Morning light on code.",
+      "Begin with intention.",
+      "Fresh dawn."
+    ],
+    "friday": [
+      "Week's end. Release gently.",
+      "Let Friday be light.",
+      "Closing the circle."
+    ],
+    "weekend": [
+      "Weekend stillness.",
+      "Quiet hours to create.",
+      "Rest is also progress."
+    ],
+    "worktree": [
+      "Many branches, one tree.",
+      "Roots hold them all.",
+      "Parallel paths converge."
+    ],
+    "marathon": [
+      "Long journeys teach patience.",
+      "Endurance is a practice.",
+      "Still here. Still steady."
+    ],
+    "fresh": [
+      "Empty cup. Ready to fill.",
+      "Beginner's mind.",
+      "Nothing to carry."
+    ],
+    "dirty": [
+      "Work in motion.",
+      "Impermanence is natural.",
+      "Changes await their moment."
+    ],
+    "clean": [
+      "A tidy garden.",
+      "Order brings peace.",
+      "Clear space, clear mind."
+    ],
+    "behind": [
+      "The river is ahead.",
+      "Catching up is arriving.",
+      "No urgency. Just movement."
+    ],
+    "hot,late": [
+      "Deep work in deep night.",
+      "Midnight depth. Stay calm."
+    ],
+    "fresh,morning": [
+      "Dawn and emptiness. Perfect.",
+      "New morning, open mind."
+    ],
+    "clean,chill": [
+      "Clean and calm. Ideal.",
+      "Nothing to disturb."
+    ]
+  }
+}

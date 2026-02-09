@@ -1,0 +1,80 @@
+{
+  "name": "my-vibe",
+  "description": "A short tagline for your personality pack",
+  "version": "1.0",
+
+  "agent": {
+    "name": "AgentName",
+    "nameColor": "44"
+  },
+
+  "palette": {
+    "primary": "44",
+    "accent": "214",
+    "warning": "204",
+    "dim": "245"
+  },
+
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Working",
+      "Thinking",
+      "Reading",
+      "Building",
+      "Searching"
+    ]
+  },
+
+  "quips": {
+    "any": [
+      "Your default quips go here.",
+      "These show regardless of context.",
+      "Aim for 20-30 in this category.",
+      "Short and punchy. 2-5 words is ideal."
+    ],
+    "chill": [
+      "Context below 30%. Plenty of room."
+    ],
+    "warm": [
+      "Context 30-70%. Cruising."
+    ],
+    "hot": [
+      "Context above 70%. Getting tight."
+    ],
+    "late": [
+      "After 10pm. Night owl territory."
+    ],
+    "morning": [
+      "5am-8am. Early bird or never slept."
+    ],
+    "friday": [
+      "It's Friday. Ship it or shelve it."
+    ],
+    "weekend": [
+      "Saturday or Sunday coding."
+    ],
+    "fresh": [
+      "Session under 5 minutes old."
+    ],
+    "marathon": [
+      "Session over 60 minutes."
+    ],
+    "dirty": [
+      "Uncommitted changes in the working tree."
+    ],
+    "clean": [
+      "Clean working tree. Nothing to commit."
+    ],
+    "behind": [
+      "Behind upstream. Time to pull."
+    ],
+    "worktree": [
+      "Working from a git worktree."
+    ],
+    "hot,late": [
+      "Combo tags match when ALL tags are active.",
+      "High context + late night = this."
+    ]
+  }
+}

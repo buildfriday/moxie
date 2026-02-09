@@ -1,0 +1,152 @@
+{
+  "name": "roast",
+  "description": "You asked for this.",
+  "version": "1.0",
+  "agent": {
+    "name": "Your Intern",
+    "nameColor": "204"
+  },
+  "palette": {
+    "primary": "204",
+    "accent": "209",
+    "warning": "196",
+    "dim": "138"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Fixing your mess",
+      "Judging silently",
+      "Doing your job",
+      "Cleaning up after you",
+      "Unfucking this",
+      "Side-eyeing this",
+      "Not impressed yet",
+      "Taking over",
+      "Snooping",
+      "Interrogating",
+      "Dismantling",
+      "Excavating",
+      "Rewriting everything",
+      "Compensating",
+      "Tolerating this",
+      "Lowering expectations",
+      "Questioning choices"
+    ]
+  },
+  "quips": {
+    "any": [
+      "I've seen your git history.",
+      "Copilot wrote this, didn't it.",
+      "git blame says it was you.",
+      "That's one way to do it. Not the way.",
+      "You named a variable temp six months ago. It's permanent now.",
+      "This compiles by accident.",
+      "I've seen worse. Not recently.",
+      "Bold strategy, let's see how it plays out.",
+      "Did you test this? Rhetorical question.",
+      "Interesting interpretation of best practices.",
+      "The TODO is from 2019. It's not getting done.",
+      "Who approved this PR? Themselves?",
+      "Technically correct. The worst kind.",
+      "I wouldn't push this. But you will.",
+      "This function has trust issues.",
+      "Comments say one thing. Code says another.",
+      "Ah yes. The 'temporary' fix.",
+      "That's certainly a design pattern.",
+      "Code review? More like crime scene review.",
+      "The linter gave up before I did.",
+      "Rubber duck debugging won't save this.",
+      "Ship it. Not my repo.",
+      "This has 'written at 2am' energy.",
+      "Oh, a 500-line function. Bold architectural choice.",
+      "I've seen better error handling in a bash one-liner."
+    ],
+    "chill": [
+      "Simple task. Let's see you fumble it.",
+      "Even you can't mess this up. Probably.",
+      "Easy one. Savor it.",
+      "Low stakes. Your comfort zone."
+    ],
+    "warm": [
+      "Getting complex. Should I take over?",
+      "Now we're in your danger zone.",
+      "Complexity rising. Confidence shouldn't be.",
+      "This is where your commits get interesting."
+    ],
+    "hot": [
+      "Running out of room. Whose fault is that.",
+      "Context is full. Unlike your test coverage.",
+      "Heavy session. Heavy code. Heavy sigh.",
+      "This is a lot. Even for me.",
+      "Red zone. Like your error logs."
+    ],
+    "late": [
+      "Past bedtime. This better be important.",
+      "Nothing good happens after midnight. Especially commits.",
+      "Late night debugging. The code smells worse at night.",
+      "Go to sleep. The bugs will still be here."
+    ],
+    "morning": [
+      "Morning. The bugs slept well.",
+      "Early start. The code didn't improve overnight.",
+      "Coffee first. Then face what you wrote yesterday."
+    ],
+    "friday": [
+      "Friday deploy? I admire the audacity.",
+      "It's Friday. Your on-call self hates you.",
+      "YOLO Friday push. Classic."
+    ],
+    "weekend": [
+      "Weekend coding. No one's making you do this.",
+      "Saturday commits. Socially concerning.",
+      "Weekend warrior or just bad at planning?"
+    ],
+    "worktree": [
+      "Multiple worktrees. Multiple problems.",
+      "Branching out. The bugs appreciate the space.",
+      "Two repos, twice the disappointment."
+    ],
+    "marathon": [
+      "Still here? Impressive. Or sad.",
+      "At this point I know your code better than you do.",
+      "Long session. Diminishing returns hit hours ago.",
+      "You've been here so long I feel attached. Don't make it weird."
+    ],
+    "fresh": [
+      "New session. Same problems.",
+      "Let's see what we're working with. Oh.",
+      "Fresh start. Your code's reputation precedes it.",
+      "Clean context. Enjoy it while it lasts."
+    ],
+    "dirty": [
+      "Uncommitted changes. Commitment issues?",
+      "Your working tree is a crime scene.",
+      "Dirty state. On brand.",
+      "Lots of changes. None committed. Relatable?"
+    ],
+    "clean": [
+      "Nothing to commit. Suspicious.",
+      "Spotless. Rare look for you.",
+      "Clean tree. Did someone else push?",
+      "No changes. Productivity in question."
+    ],
+    "behind": [
+      "You're behind upstream. On brand.",
+      "Upstream moved on. Literally and metaphorically.",
+      "Behind remote. Your code, your pace, I guess."
+    ],
+    "hot,late": [
+      "Complex code at midnight. This will age poorly.",
+      "Full context, late night. Recipe for regret."
+    ],
+    "dirty,late": [
+      "Uncommitted at 2am. Future you will love this.",
+      "Late night, dirty tree. What could go wrong."
+    ],
+    "fresh,morning": [
+      "Morning, empty context. The calm before the you.",
+      "Fresh morning session. Hope springs eternal."
+    ]
+  }
+}

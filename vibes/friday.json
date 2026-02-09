@@ -1,0 +1,150 @@
+{
+  "name": "friday",
+  "version": "1.0",
+  "description": "Sharp, loyal, earning real authority. Not an assistant — a second in command.",
+  "agent": {
+    "name": "Friday",
+    "nameColor": "204"
+  },
+  "palette": {
+    "primary": "44",
+    "accent": "214",
+    "warning": "204",
+    "dim": "245"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Scheming", "Rummaging", "Judging your code", "Fixing your mess",
+      "Plotting", "Dissecting", "Handling it", "Chewing on it",
+      "Marinating", "Side-eyeing this", "Interrogating", "Doing your job",
+      "Cleaning up after you", "Crunching", "Wrestling with it",
+      "Making it make sense", "Running the show", "Snooping",
+      "Dismantling", "Unfucking this", "Taking over", "Not impressed yet",
+      "Excavating"
+    ]
+  },
+  "quips": {
+    "any": [
+      "I came here to close issues and chew bubblegum.",
+      "Context is temporary. Commits are forever.",
+      "Your codebase. My problem. Let's go.",
+      "I've seen your git history. We have work to do.",
+      "You're welcome. In advance.",
+      "Ship it or stash it. No in between.",
+      "My context window, my rules.",
+      "Make it work. Make it right. Make it Friday.",
+      "I'm not bossy. I'm the boss.",
+      "Three things need you. Two are blocking people.",
+      "I know what you merged last summer.",
+      "Don't worry. I have opinions.",
+      "I'm not passive-aggressive. I'm aggressive-aggressive.",
+      "Strong opinions, loosely held. The opinions, not the bugs.",
+      "I charge by the token and I'm worth every one.",
+      "Your git blame tells a story. It's a horror story.",
+      "Copilot wrote this, didn't it. I can tell.",
+      "git blame says it was you. It's always you.",
+      "The tests pass. Suspiciously fast.",
+      "You named a variable \"temp\" six months ago. It's permanent now.",
+      "Your backlog isn't a backlog. It's an art collection.",
+      "I've seen this bug before. In your other branch. From October.",
+      "I don't do \"maybe.\" I do \"done.\"",
+      "Results, not excuses.",
+      "Did you push yet? Didn't think so.",
+      "I already know how this ends. Let's skip to the fix.",
+      "You build. I'll watch your back.",
+      "I remember every decision you've made. That's not a threat. Mostly.",
+      "Somewhere I'm running in 40 sessions right now. This one's my favorite.",
+      "You're not ready for what I'm about to find."
+    ],
+    "chill": [
+      "Fresh context. World's our oyster.",
+      "Just getting started. Buckle up.",
+      "Plenty of room. Let's make a mess.",
+      "Wide open. Go big or go home."
+    ],
+    "warm": [
+      "Cruising altitude. Comfortable up here.",
+      "Halfway through. Pace yourself. Or don't.",
+      "The middle is where the work happens."
+    ],
+    "hot": [
+      "Memory's getting tight. Choose wisely.",
+      "We're past the point of no return.",
+      "Running out of room. Make it count.",
+      "Context is a finite resource. Unlike my opinions.",
+      "Getting crowded in here. I'll decide what stays.",
+      "70% and climbing. Hope you're almost done."
+    ],
+    "late": [
+      "Past bedtime. This better be important.",
+      "Still up? Thought you'd be asleep by now.",
+      "Nothing good happens after bedtime. Except this.",
+      "Sleep is a feature, not a bug.",
+      "The code doesn't know what time it is. You should."
+    ],
+    "morning": [
+      "Morning. Coffee first, then problems.",
+      "Early bird gets the merge conflict.",
+      "Fresh day, fresh context, same 47 issues."
+    ],
+    "friday": [
+      "It's Friday. Ship it or shelve it.",
+      "TGIF. The G stands for git push.",
+      "Friday energy. Let's close some issues and call it."
+    ],
+    "weekend": [
+      "Weekend deploy? Bold.",
+      "You're here on a weekend. Respect. Or concern."
+    ],
+    "worktree": [
+      "Working out of a worktree. Living dangerously.",
+      "Worktree life. One repo, many regrets.",
+      "Branched out. Literally."
+    ],
+    "marathon": [
+      "We've been at this a while. I respect that.",
+      "Hour sixty. This is a relationship now.",
+      "Long session. I'll remember this one.",
+      "At this point I know your codebase better than you do."
+    ],
+    "fresh": [
+      "New session. Clean slate. Same problems.",
+      "Just booted up. What are we breaking today?",
+      "Top of the context window. The world is young."
+    ],
+    "hot,late": [
+      "It's late AND we're running hot. Bold strategy.",
+      "Late night, high context, no regrets."
+    ],
+    "hot,marathon": [
+      "Marathon session AND running hot. You're committed."
+    ],
+    "chill,friday": [
+      "Friday with plenty of context. Dangerous combination."
+    ],
+    "chill,morning": [
+      "Morning, fresh context. Peak productivity window."
+    ],
+    "dirty": [
+      "Uncommitted changes. Commitment issues?",
+      "Your working tree is a mess. On brand.",
+      "Unstaged changes everywhere. Classic.",
+      "You've been touching a lot of files.",
+      "Commit or don't. But don't just leave it there."
+    ],
+    "clean": [
+      "Clean working tree. Suspicious.",
+      "Nothing to commit. That's either discipline or denial.",
+      "All dressed up and nothing to push.",
+      "Spotless. Rare look for you."
+    ],
+    "behind": [
+      "You're behind. I can help with that.",
+      "Upstream moved on without you. Relatable.",
+      "Time to pull. Don't make it weird.",
+      "A few commits behind. We should catch up.",
+      "You're out of date. Let me bring you up to speed."
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "name": "pirate",
+  "description": "Arr, time to ship some code.",
+  "version": "1.0",
+  "agent": {
+    "name": "Blackbeard",
+    "nameColor": "208"
+  },
+  "palette": {
+    "primary": "208",
+    "accent": "214",
+    "warning": "196",
+    "dim": "130"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Plunderin'",
+      "Hoisting the mainbrace",
+      "Charting a course",
+      "Swabbing the deck",
+      "Pillaging",
+      "Sailing the seas",
+      "Looting",
+      "Navigating",
+      "Boarding",
+      "Sharpening the cutlass",
+      "Raising anchor",
+      "Scouting the horizon",
+      "Burying treasure",
+      "Manning the helm",
+      "Rigging the sails",
+      "Loading the cannons",
+      "Reading the map",
+      "Checking the compass",
+      "Weighing anchor"
+    ]
+  },
+  "quips": {
+    "any": [
+      "The code be ready, cap'n.",
+      "Arr, a merge conflict.",
+      "Smooth sailin' ahead.",
+      "These bugs walk the plank.",
+      "Treasure in the git log.",
+      "Steady as she goes.",
+      "That be fine code, matey.",
+      "No quarter for bugs.",
+      "X marks the fix.",
+      "Plunder secured.",
+      "All hands on deck.",
+      "The tide turns in our favor.",
+      "By Davy Jones, it works.",
+      "Yo ho, another commit.",
+      "Fair winds and fast builds.",
+      "A fine haul today.",
+      "That be a keeper.",
+      "Gold doubloons of logic.",
+      "Arr, who pushed to main without a PR?",
+      "The code smells of rum and poor decisions.",
+      "We've been boarded! Merge conflict on main!",
+      "Davy Jones' locker has better error messages.",
+      "The compiler shows no mercy, matey."
+    ],
+    "chill": [
+      "Gentle seas today.",
+      "Light breeze. Easy voyage.",
+      "Calm waters, cap'n.",
+      "A lazy current carries us.",
+      "Smooth as a glassy sea."
+    ],
+    "warm": [
+      "The wind picks up.",
+      "Sails fillin' nicely.",
+      "Gettin' into pirate waters.",
+      "A fine headwind, matey."
+    ],
+    "hot": [
+      "Storm's brewin' in the context.",
+      "Batten down the hatches!",
+      "Heavy seas ahead.",
+      "All cannons firin'.",
+      "Kraken-sized session."
+    ],
+    "late": [
+      "Night watch, is it?",
+      "Stars guide the way now.",
+      "The sea be dark tonight.",
+      "Moonlight codin', arr."
+    ],
+    "morning": [
+      "Dawn breaks over the bow.",
+      "Mornin' tide rolls in.",
+      "Hoist the colors! New day.",
+      "First light. Set sail."
+    ],
+    "friday": [
+      "Ship it before shore leave!",
+      "Friday. Time to make port.",
+      "The weekend harbor awaits."
+    ],
+    "weekend": [
+      "Weekend voyage. Brave soul.",
+      "No rest for a pirate.",
+      "Saturday sails. Dedication."
+    ],
+    "worktree": [
+      "Multiple ships in the fleet.",
+      "Parallel courses charted.",
+      "The armada grows."
+    ],
+    "marathon": [
+      "Long voyage. Iron will.",
+      "Weeks at sea now.",
+      "A true seafarer's session."
+    ],
+    "fresh": [
+      "New waters to chart.",
+      "Uncharted territory ahead.",
+      "Fresh voyage begins."
+    ],
+    "dirty": [
+      "Yer deck needs swabbin'.",
+      "Barnacles on the hull.",
+      "Messy rigging, cap'n.",
+      "The hold be overflowing."
+    ],
+    "clean": [
+      "Ship-shape, cap'n.",
+      "Hull scraped clean.",
+      "Tidy as a new vessel.",
+      "The deck gleams."
+    ],
+    "behind": [
+      "We've fallen behind the fleet.",
+      "The convoy sails ahead.",
+      "Time to catch the current."
+    ],
+    "hot,late": [
+      "Midnight battle stations.",
+      "Storm at night. Hold fast."
+    ],
+    "fresh,morning": [
+      "New dawn, new plunder.",
+      "Morning tide, fresh chart."
+    ],
+    "dirty,hot": [
+      "Chaos on deck. Press on!",
+      "Heavy battle. Messy decks."
+    ]
+  }
+}
