@@ -1,0 +1,19 @@
+{
+  "name": "moxie-vibes",
+  "version": "1.5.0",
+  "description": "Personality for Claude Code — vibes, quips, spinner verbs, statusline",
+  "bin": {
+    "moxie": "./scripts/moxie.js"
+  },
+  "files": [
+    "scripts/moxie.js",
+    "scripts/statusline.mjs",
+    "scripts/ccbridge.mjs",
+    "vibes/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": ["claude-code", "claude", "ai", "vibes", "statusline", "personality"],
+  "repository": "buildfriday/moxie",
+  "license": "MIT"
+}

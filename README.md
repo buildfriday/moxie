@@ -54,56 +54,31 @@ A statusline that actually tells you something, and sounds like someone while do
 
 ## Quick Start
 
+```bash
+# One command, any platform
+npx moxie-vibes set trail
+```
+
+That's it. Copies vibe + statusline, updates `~/.claude/settings.json`. Requires Node.js (already installed if you're using Claude Code).
+
 ### For AI Agents
 
-> **Agents**: Read this section, then set up moxie for your user.
->
-> **Base URL**: `https://raw.githubusercontent.com/buildfriday/moxie/main/`
-> - Vibes: `vibes/{name}.json` (e.g. `vibes/trail.json`)
-> - Scripts: `scripts/statusline.sh`, `scripts/statusline.ps1`
-> - Bridge: `scripts/ccbridge.sh`, `scripts/ccbridge.ps1`
+> **Agents**: Two steps.
 
-1. Ask the user what personality they want (or pick from the [built-in vibes](#built-in-vibes))
-2. Download the vibe JSON from this repo
-3. Create `~/.moxie/` and save the vibe as `~/.moxie/active.json`
-4. **Detect existing statusline tools:**
-   - Check if `~/.config/ccstatusline/settings.json` exists
-   - **If ccstatusline found**: Install the bridge script instead of the full statusline:
-     - Save `scripts/ccbridge.sh` (or `.ps1`) to `~/.moxie/`
-     - Add a `custom-command` widget to ccstatusline's `settings.json`:
-       - **Windows**: `"commandPath": "pwsh -ExecutionPolicy Bypass -File C:/Users/USERNAME/.moxie/ccbridge.ps1"`, `"timeout": 3000` (pwsh cold start needs ~1-2s)
-       - **Mac/Linux**: `"commandPath": "bash ~/.moxie/ccbridge.sh"`, `"timeout": 500`
-       - Set `"maxWidth": 120` (ANSI escape codes count against the character budget, so 60 truncates)
-     - Skip step 5's statusLine setup (ccstatusline handles the statusline display)
-     - Still apply spinnerVerbs in step 6 (those work independently)
-     - **Note**: If ccstatusline hasn't run yet, start a Claude Code session first to let it generate `~/.config/ccstatusline/settings.json`, then add the moxie widget. ccstatusline overwrites its config on first run.
-   - **If no ccstatusline**: Continue with full moxie statusline setup below
-5. Copy the statusline script:
-   - **Mac/Linux**: Save `scripts/statusline.sh` to `~/.moxie/statusline.sh`
-   - **Windows**: Save `scripts/statusline.ps1` to `~/.moxie/statusline.ps1`
-6. Merge into `~/.claude/settings.json`:
+1. Run: `npx moxie-vibes set <vibe>` (pick from the [built-in vibes](#built-in-vibes) or ask the user)
+2. Tell the user what they got.
 
-```json
-{
-  "spinnerVerbs": {
-    "mode": "replace",
-    "verbs": ["...from the vibe JSON spinnerVerbs.verbs..."]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "bash ~/.moxie/statusline.sh"
-  }
-}
-```
+If `npx` isn't available, see [Manual Install](#manual-install) below.
 
-Windows `statusLine.command`:
-```
-pwsh -ExecutionPolicy Bypass -File C:/Users/USERNAME/.moxie/statusline.ps1
-```
+**ccstatusline users**: After running `moxie set`, add a `custom-command` widget to `~/.config/ccstatusline/settings.json`:
+- `"type": "custom-command"`, `"commandPath": "node ~/.moxie/ccbridge.mjs"`, `"timeout": 500`, `"maxWidth": 120`, `"preserveColors": true`
 
-7. Tell the user what they got.
+### Manual Install
 
-### For Humans
+<details>
+<summary>For environments without npm/npx</summary>
+
+**Base URL**: `https://raw.githubusercontent.com/buildfriday/moxie/main/`
 
 ```bash
 # 1. Create the moxie directory
@@ -113,20 +88,27 @@ mkdir -p ~/.moxie
 curl -sL https://raw.githubusercontent.com/buildfriday/moxie/main/vibes/trail.json > ~/.moxie/active.json
 
 # 3. Grab the statusline script
-# Mac/Linux:
-curl -sL https://raw.githubusercontent.com/buildfriday/moxie/main/scripts/statusline.sh > ~/.moxie/statusline.sh
-chmod +x ~/.moxie/statusline.sh
-
-# Windows (PowerShell):
-# curl -sL https://raw.githubusercontent.com/buildfriday/moxie/main/scripts/statusline.ps1 > ~/.moxie/statusline.ps1
+curl -sL https://raw.githubusercontent.com/buildfriday/moxie/main/scripts/statusline.mjs > ~/.moxie/statusline.mjs
 
 # 4. Extract spinner verbs and update settings
-# Pull the verbs from your vibe:
-jq '.spinnerVerbs' ~/.moxie/active.json
-# Then add them to ~/.claude/settings.json (see format above)
+node -e "console.log(JSON.stringify(JSON.parse(require('fs').readFileSync('$HOME/.moxie/active.json','utf8')).spinnerVerbs, null, 2))"
+# Then add to ~/.claude/settings.json:
 ```
 
-**Requires**: `jq` for the bash statusline script. Install: `brew install jq` / `apt install jq` / `choco install jq`
+```json
+{
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": ["...from the vibe JSON spinnerVerbs.verbs..."]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node ~/.moxie/statusline.mjs"
+  }
+}
+```
+
+</details>
 
 ---
 
@@ -180,7 +162,8 @@ The format:
     "primary": "44",
     "accent": "214",
     "warning": "204",
-    "dim": "245"
+    "dim": "245",
+    "worktree": "170"
   },
   "spinnerVerbs": {
     "mode": "replace",
@@ -299,11 +282,14 @@ Every Claude Code user should get to have this -- an agent that feels like someo
 
 ## FAQ
 
+**How do I install?**
+`npx moxie-vibes set trail` (or any vibe name). One command, any platform.
+
 **Do I need jq?**
-For the bash statusline, yes. The PowerShell version uses built-in JSON parsing.
+No. The statusline scripts are Node.js -- no external dependencies beyond Node itself.
 
 **Does this work on Windows?**
-Yes. Use `statusline.ps1` instead of `statusline.sh`.
+Yes. The scripts are Node.js and work identically on all platforms.
 
 **Can I use this without the statusline?**
 Yes. Just use the `spinnerVerbs` from any vibe -- those work standalone in `~/.claude/settings.json`.
@@ -312,7 +298,7 @@ Yes. Just use the `spinnerVerbs` from any vibe -- those work standalone in `~/.c
 Skip the statusline setup entirely. Just copy `spinnerVerbs` from a vibe into your settings.
 
 **Does this work with ccstatusline?**
-Yes. Use the bridge scripts (`ccbridge.ps1` / `ccbridge.sh`) as a `custom-command` widget. The bridge outputs agent name + quip; ccstatusline handles the rest. See the [Quick Start](#quick-start) setup for details.
+Yes. Use `ccbridge.mjs` as a `custom-command` widget. The bridge outputs agent name + quip; ccstatusline handles the rest. See the [Quick Start](#quick-start) setup for details.
 
 **Does this work on Claude Desktop?**
 No. Moxie is for Claude Code (the CLI). It works in bare terminal, VS Code terminal, and JetBrains terminal.

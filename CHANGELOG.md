@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.5 — Node.js Unification + npm (2026-02-10)
+
+Replaced 4 platform-split scripts with 2 cross-platform Node.js scripts. No more `jq` dependency. Faster Windows statusline (~30ms Node vs ~400ms PowerShell cold start). Now available via npm.
+
+### Added
+- **npm distribution** — `npx moxie-vibes set trail` for one-command install
+- **`palette.worktree`** — optional color for worktree name display (falls back to accent)
+- **Upgrade detection** — `moxie set` auto-updates moxie-owned statusLine commands (old `.ps1`/`.sh` → `.mjs`)
+- **Old script cleanup** — removes leftover `.ps1`/`.sh` scripts from `~/.moxie/` on upgrade
+- **ccstatusline warning** — detects ccstatusline and reminds to update widget commandPath
+
+### Changed
+- **`statusline.mjs`** replaces `statusline.ps1` + `statusline.sh` — single script, all platforms
+- **`ccbridge.mjs`** replaces `ccbridge.ps1` + `ccbridge.sh` — single script, all platforms
+- **`moxie.js`** — universal copy + settings injection, no platform branching
+- **statusLine command** — now `node ~/.moxie/statusline.mjs` on all platforms
+- **ccbridge commandPath** — now `node ~/.moxie/ccbridge.mjs`, 500ms timeout everywhere (no PowerShell cold start penalty)
+
+### Removed
+- `statusline.ps1`, `statusline.sh`, `ccbridge.ps1`, `ccbridge.sh`
+- `jq` requirement for bash users
+
 ## v1.1 — Post-Install Fixes (2026-02-09)
 
 Testing the full install flow (ccstatusline bridge, Windows, Mac/Linux) surfaced several issues. All fixed.
