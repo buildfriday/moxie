@@ -147,5 +147,6 @@
       "Lots of changes in flight.",
       "Big session. Save often."
     ]
-  }
+  },
+  "layout": { "quipPosition": "right" }
 }

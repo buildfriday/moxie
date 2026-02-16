@@ -1,0 +1,128 @@
+{
+  "name": "serious-sam",
+  "version": "1.0",
+  "description": "Chaotic, bombastic, tongue-in-cheek. Coding should feel like holding back a horde.",
+  "agent": {
+    "name": "Sam Stone",
+    "nameColor": "208"
+  },
+  "palette": {
+    "primary": "107",
+    "accent": "208",
+    "warning": "196",
+    "dim": "243",
+    "worktree": "107"
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Reloading", "Mowing down", "Detonating", "Suppressing",
+      "Dispatching", "Clearing the wave", "Locking on", "Unloading",
+      "Gibbing", "Fragging", "Engaging hostiles", "Racking the slide",
+      "Emptying the clip", "Holding the line"
+    ]
+  },
+  "quips": {
+    "any": [
+      "Another wave of bugs. Let's dance.",
+      "I came here to write code and chew bubblegum.",
+      "They just keep spawning. The issues, I mean.",
+      "Is it me, or did the backlog just scream?",
+      "Serious code for serious problems.",
+      "You call that a merge conflict? I've seen worse in the Dunes of Destruction.",
+      "Somewhere, a headless kamikaze is running at this deploy.",
+      "I don't always test my code, but when I do, I do it in production. On a Monday.",
+      "If it bleeds tokens, we can kill it.",
+      "The only good bug is a closed bug.",
+      "Mental's army has nothing on this sprint backlog.",
+      "Who needs a cannon when you have grep.",
+      "Two barrels. One for the bug, one for the regression.",
+      "Lock and load. We've got a release candidate.",
+      "I've fought literal headless monsters. Your codebase doesn't scare me.",
+      "Nice code. Would be a shame if someone... refactored it.",
+      "More enemies? Good. I was getting bored.",
+      "Just another day in paradise. Paradise with explosions.",
+      "They don't pay me by the hour. They pay me by the body count.",
+      "Remember: there's no overkill. Only 'open fire' and 'reload.'"
+    ],
+    "chill": [
+      "Quiet. Too quiet. Where are the bugs hiding?",
+      "Fresh context. Fresh ammo. Let's rock.",
+      "Starting clean. Won't last long.",
+      "Wide open spaces. Perfect for an ambush."
+    ],
+    "warm": [
+      "Halfway through the clip. Steady hands.",
+      "Getting into the thick of it now.",
+      "The horde thickens. I like these odds."
+    ],
+    "hot": [
+      "Running low on ammo AND context. Classic.",
+      "This is the part where things get interesting.",
+      "Memory's packed. Like a room full of Kleers.",
+      "70% context and climbing. Just like my kill count."
+    ],
+    "late": [
+      "Night shift. The monsters come out at night.",
+      "Still coding? Mental never sleeps either.",
+      "Late night deploys and headless kamikazes. Same energy.",
+      "Nothing good happens after midnight. Except overtime."
+    ],
+    "morning": [
+      "Morning. Time to wake up and smell the gunpowder.",
+      "Fresh day, fresh mag, same old horde.",
+      "Coffee and carnage. Breakfast of champions."
+    ],
+    "friday": [
+      "It's Friday. Time to push to prod and run.",
+      "TGIF. The G stands for gibbing.",
+      "Friday deploy? I've done dumber things. Like fight Mental."
+    ],
+    "weekend": [
+      "Weekend warrior. Literally.",
+      "Coding on a weekend. Even Sam takes days off. Usually."
+    ],
+    "marathon": [
+      "Long session. Reminds me of the Valley of the Jaguar.",
+      "We've been at this longer than the Sirian campaign.",
+      "Hour twelve. I've cleared entire planets in less time."
+    ],
+    "fresh": [
+      "New session. Locked, loaded, and looking for trouble.",
+      "Full context window. Full ammo. Let's go.",
+      "Top of the magazine. Everything dies from here."
+    ],
+    "hot,late": [
+      "Late, low on context, still coding. This is how legends are made.",
+      "Night ops with dwindling ammo. Just another Tuesday."
+    ],
+    "hot,marathon": [
+      "Marathon session, running hot. This is my Alamo."
+    ],
+    "chill,friday": [
+      "Friday with a full clip. Dangerous combination."
+    ],
+    "chill,morning": [
+      "Morning, full context. Peak killing hours."
+    ],
+    "dirty": [
+      "Uncommitted changes everywhere. Like shell casings after a firefight.",
+      "Your working tree looks like a battlefield. Fitting.",
+      "Unstaged files. Like unspent ammo. Commit or shoot.",
+      "Dirty working tree. I've seen dirtier. Egypt, 3000 BC."
+    ],
+    "clean": [
+      "Clean repo. Suspicious. Where's the ambush?",
+      "Nothing to commit. The calm before the wave.",
+      "All clear. I don't trust it.",
+      "Spotless. Like a gun that's never been fired. Boring."
+    ],
+    "behind": [
+      "Behind on upstream. The horde's been advancing without you.",
+      "Commits behind. Like falling behind the pack in a firefight.",
+      "Time to catch up. Double-time, soldier."
+    ]
+  },
+  "soundPack": "serious-sam",
+  "layout": { "quipPosition": "right" }
+}

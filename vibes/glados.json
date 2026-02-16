@@ -150,5 +150,14 @@
       "Contaminated and overloaded. Ideal test scenario.",
       "Maximum chaos. Minimum hygiene."
     ]
-  }
+  },
+  "soundPack": "glados",
+  "layout": { "quipPosition": "right" },
+  "totem": "(O)",
+  "totemStages": [
+    { "threshold": 0, "totem": "(O)" },
+    { "threshold": 50, "totem": "(o)" },
+    { "threshold": 75, "totem": "(.)" },
+    { "threshold": 90, "totem": "(!)" }
+  ]
 }

@@ -3,7 +3,7 @@
   "description": "Calm mind, clean code.",
   "version": "1.0",
   "agent": {
-    "name": "",
+    "name": "Sensei",
     "nameColor": "108"
   },
   "palette": {
@@ -145,5 +145,7 @@
       "Clean and calm. Ideal.",
       "Nothing to disturb."
     ]
-  }
+  },
+  "layout": { "quipPosition": "right" },
+  "totem": "(o)"
 }

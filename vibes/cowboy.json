@@ -149,5 +149,8 @@
       "Dusty and dangerous.",
       "Wild ride through rough country."
     ]
-  }
+  },
+  "soundPack": "aoe",
+  "layout": { "quipPosition": "right" },
+  "totem": "[._.]"
 }

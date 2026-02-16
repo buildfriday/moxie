@@ -3,7 +3,7 @@
   "description": "Understated. Economical. Gets it done.",
   "version": "1.0",
   "agent": {
-    "name": "",
+    "name": "Claude",
     "nameColor": "245"
   },
   "palette": {
@@ -150,5 +150,7 @@
       "Morning. Empty context. Coffee.",
       "Starting from zero. Again."
     ]
-  }
+  },
+  "layout": { "quipPosition": "right" },
+  "totem": "[._.]"
 }

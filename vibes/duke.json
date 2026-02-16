@@ -148,5 +148,8 @@
       "Hot mess? I eat those for breakfast.",
       "Maximum chaos. Maximum Duke."
     ]
-  }
+  },
+  "soundPack": "serious-sam",
+  "layout": { "quipPosition": "right" },
+  "totem": "[B|]"
 }

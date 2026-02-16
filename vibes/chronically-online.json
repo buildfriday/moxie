@@ -1,0 +1,47 @@
+{
+  "name": "chronically-online",
+  "description": "no thoughts, head empty",
+  "version": "1.0",
+  "agent": { "name": "Unhinged", "nameColor": "201" },
+  "palette": { "primary": "201", "accent": "51", "warning": "46", "dim": "141" },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Shitposting", "Ratio'ing the codebase", "No thoughts, head empty",
+      "Built different", "Living rent free in your RAM", "It's giving... errors",
+      "Gaslighting the compiler", "Down bad for this merge", "Caught in 4K",
+      "Understood the assignment", "Main character moment", "Vibe checking the stack",
+      "Sending it", "NPC behavior detected", "Touch grass speedrun",
+      "Delulu is the solulu", "Slay"
+    ]
+  },
+  "quips": {
+    "any": [
+      "skill issue tbh", "no cap just code", "this is cinema", "real",
+      "respectfully, what", "the vibes are off", "slay", "bestie no",
+      "understood the assignment", "living for this", "the audacity",
+      "unhinged and thriving", "that's valid", "main character energy",
+      "absolutely feral codebase", "rent free", "lowkey iconic",
+      "it's giving senior dev", "period", "say less", "we move",
+      "not me debugging at 2am", "the way this just works"
+    ],
+    "chill": ["vibes immaculate", "living our best life rn", "wholesome era", "soft launch of this feature"],
+    "warm": ["things are getting spicy", "the plot thickens bestie", "okay this is getting interesting", "character development"],
+    "hot": ["we are SO cooked rn", "this is not a drill bestie", "bruh.", "panic posting from the trenches", "help it's on fire and I'm live"],
+    "late": ["least unhinged late night session", "3am posting? it's a lifestyle", "the algorithm doesn't sleep and neither do I", "doomscrolling through code at midnight"],
+    "morning": ["morning posting begins", "chronically early", "good morning to everyone except this bug", "rise and grind or whatever"],
+    "friday": ["friday deploy? chaotic neutral energy", "it's giving YOLO", "friday coded. no notes."],
+    "weekend": ["weekend coding? in THIS economy?", "touch grass challenge failed", "logging on during the weekend is a cry for help"],
+    "worktree": ["multiverse arc activated", "parallel timeline energy", "branching storylines let's go"],
+    "marathon": ["touch grass? in THIS session?", "permanent resident of the terminal", "terminally online is a personality trait", "I simply cannot log off"],
+    "fresh": ["new session just dropped", "first tweet of the thread", "going live", "entered the chat"],
+    "dirty": ["those uncommitted changes are giving me the ick", "messy era tbh", "not the dirty tree again bestie", "git status said yikes"],
+    "clean": ["clean girl aesthetic but for code", "minimalist era", "that's so clean it's suspicious", "organized queen"],
+    "behind": ["the main branch left us on read", "ghosted by upstream", "falling behind is lowkey our brand"],
+    "hot,late": ["3am + cooked. peak content.", "live from the trenches at midnight"],
+    "fresh,morning": ["morning era fresh start no cap", "today's episode just dropped"],
+    "dirty,hot": ["messy AND cooked? this is content", "chaotic evil session unlocked"]
+  },
+  "layout": { "quipPosition": "right" },
+  "totem": "[xD]"
+}

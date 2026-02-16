@@ -148,5 +148,7 @@
       "Morning, empty context. The calm before the you.",
       "Fresh morning session. Hope springs eternal."
     ]
-  }
+  },
+  "layout": { "quipPosition": "right" },
+  "totem": "[-_-]"
 }

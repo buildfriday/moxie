@@ -147,5 +147,7 @@
       "A few commits behind. We should catch up.",
       "You're out of date. Let me bring you up to speed."
     ]
-  }
+  },
+  "layout": { "quipPosition": "right" },
+  "totem": "[>_>]"
 }

@@ -147,5 +147,8 @@
       "Long session, tons of changes. WARRIOR.",
       "Been at it. The grind is REAL."
     ]
-  }
+  },
+  "soundPack": "halo",
+  "layout": { "quipPosition": "right" },
+  "totem": "[!]"
 }
