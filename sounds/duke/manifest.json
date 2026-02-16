@@ -1,0 +1,70 @@
+{
+  "pack": "duke",
+  "version": 5,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_hail-to-the-king.wav",
+        "session-start-2_lets-rock.wav",
+        "session-start-3_shotgun-blast.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "clicks": [
+        "send-1_switch.wav",
+        "send-2_item-pickup.wav"
+      ],
+      "barks": [
+        "bark-1_blow-it-out.wav",
+        "bark-2_suck-it-down.wav",
+        "bark-3_bitchin.wav",
+        "bark-4_come-on.wav"
+      ],
+      "barkChance": 0.2,
+      "barkCooldown": 60000
+    },
+    "Stop": {
+      "files": [
+        "stop-1_pistol-shot.wav",
+        "stop-2_shotgun-cock.wav",
+        "stop-3_mighty-boot.wav"
+      ]
+    },
+    "Notification": {
+      "files": [
+        "notification-1_groovy.wav",
+        "notification-2_damn.wav",
+        "notification-3_holy-shit.wav",
+        "notification-4_let-god-sort-em.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_come-get-some.wav",
+        "subagent-stop-2_terminated.wav",
+        "subagent-stop-3_cool.wav"
+      ]
+    }
+  },
+  "durations": {
+    "session-start-1_hail-to-the-king.wav": 1.88,
+    "session-start-2_lets-rock.wav": 1.19,
+    "session-start-3_shotgun-blast.wav": 2.43,
+    "send-1_switch.wav": 0.35,
+    "send-2_item-pickup.wav": 0.29,
+    "bark-1_blow-it-out.wav": 1.59,
+    "bark-2_suck-it-down.wav": 1.44,
+    "bark-3_bitchin.wav": 0.92,
+    "bark-4_come-on.wav": 0.89,
+    "stop-1_pistol-shot.wav": 0.67,
+    "stop-2_shotgun-cock.wav": 0.75,
+    "stop-3_mighty-boot.wav": 0.34,
+    "notification-1_groovy.wav": 1.1,
+    "notification-2_damn.wav": 0.89,
+    "notification-3_holy-shit.wav": 1.13,
+    "notification-4_let-god-sort-em.wav": 1.51,
+    "subagent-stop-1_come-get-some.wav": 1.52,
+    "subagent-stop-2_terminated.wav": 1.15,
+    "subagent-stop-3_cool.wav": 0.81
+  }
+}

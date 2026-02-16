@@ -1,0 +1,91 @@
+{
+  "pack": "serious-sam",
+  "version": 5,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_sam-lets-get-serious.wav",
+        "session-start-2_sam-here-comes-trouble.wav",
+        "session-start-3_sam-rock-and-roll.wav",
+        "session-start-4_sam-party-time.wav",
+        "session-start-5_sam-geronimo.wav"
+      ]
+    },
+    "Stop": {
+      "files": [
+        "stop-1_wpn-shotgun.wav",
+        "stop-2_wpn-colt.wav",
+        "stop-3_wpn-grenade-launcher.wav",
+        "stop-4_wpn-laser.wav",
+        "stop-5_wpn-sniper.wav",
+        "stop-6_wpn-rocket-launcher.wav"
+      ],
+      "cooldown": 500
+    },
+    "Notification": {
+      "files": [
+        "notification-1_enemy-kamikaze-attack.wav",
+        "notification-2_enemy-kamikaze-idle.wav",
+        "notification-3_enemy-kleer-sight.wav",
+        "notification-4_enemy-headman-sight.wav",
+        "notification-5_enemy-kleer-run.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_pickup-ammo.wav",
+        "subagent-stop-2_pickup-weapon.wav",
+        "subagent-stop-3_pickup-health-small.wav",
+        "subagent-stop-4_pickup-armour-shard.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "barks": [
+        "bark-1_sam-ready-for-battle.wav",
+        "bark-2_sam-ugly-freaks.wav",
+        "bark-3_sam-groovy.wav"
+      ],
+      "clicks": [
+        "send-1_click-menu-press.wav",
+        "send-2_click-menu-select.wav",
+        "send-3_click-minigun.wav"
+      ],
+      "barkChance": 0.2,
+      "barkCooldown": 90000,
+      "rareBarks": [
+        {
+          "file": "rare-1_kamikaze-scream.wav",
+          "chance": 0.01
+        }
+      ]
+    }
+  },
+  "durations": {
+    "session-start-1_sam-lets-get-serious.wav": 1.52,
+    "session-start-2_sam-here-comes-trouble.wav": 1.65,
+    "session-start-3_sam-rock-and-roll.wav": 1.15,
+    "session-start-4_sam-party-time.wav": 1.68,
+    "session-start-5_sam-geronimo.wav": 2.25,
+    "stop-1_wpn-shotgun.wav": 0.98,
+    "stop-2_wpn-colt.wav": 1.03,
+    "stop-3_wpn-grenade-launcher.wav": 0.51,
+    "stop-4_wpn-laser.wav": 0.4,
+    "stop-5_wpn-sniper.wav": 1.31,
+    "stop-6_wpn-rocket-launcher.wav": 1.4,
+    "notification-1_enemy-kamikaze-attack.wav": 0.85,
+    "notification-2_enemy-kamikaze-idle.wav": 1,
+    "notification-3_enemy-kleer-sight.wav": 1,
+    "notification-4_enemy-headman-sight.wav": 0.91,
+    "notification-5_enemy-kleer-run.wav": 0.62,
+    "subagent-stop-1_pickup-ammo.wav": 0.34,
+    "subagent-stop-2_pickup-weapon.wav": 0.43,
+    "subagent-stop-3_pickup-health-small.wav": 0.51,
+    "subagent-stop-4_pickup-armour-shard.wav": 0.53,
+    "send-1_click-menu-press.wav": 0.1,
+    "send-2_click-menu-select.wav": 0.13,
+    "send-3_click-minigun.wav": 0.15,
+    "bark-1_sam-ready-for-battle.wav": 1.08,
+    "bark-2_sam-ugly-freaks.wav": 1.5,
+    "bark-3_sam-groovy.wav": 0.79
+  }
+}

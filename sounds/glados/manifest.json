@@ -1,0 +1,80 @@
+{
+  "pack": "glados",
+  "version": 5,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_oh-its-you.wav",
+        "session-start-2_hub-return.wav",
+        "session-start-3_hub-greeting.wav",
+        "session-start-4_powerup.wav"
+      ]
+    },
+    "Stop": {
+      "files": [
+        "stop-1_button-press.wav",
+        "stop-2_fizzler-shutdown.wav",
+        "stop-3_sphere-socket-lock.wav",
+        "stop-4_laser-power-off.wav",
+        "stop-5_powerdown.wav"
+      ]
+    },
+    "Notification": {
+      "files": [
+        "notification-1_stop-it.wav",
+        "notification-2_no.wav",
+        "notification-3_i-hate-you.wav",
+        "notification-4_oh.wav",
+        "notification-5_oops.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_good.wav",
+        "subagent-stop-2_synth-positive.wav",
+        "subagent-stop-3_beep22.wav",
+        "subagent-stop-4_test-chamber-pos.wav",
+        "subagent-stop-5_good-2.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "barks": [
+        "bark-1_anti-taunt.wav",
+        "bark-2_anti-taunt-2.wav"
+      ],
+      "clicks": [
+        "send-1_editor-click.wav",
+        "send-2_tab-click.wav",
+        "send-3_ui-click.wav"
+      ],
+      "barkChance": 0.2,
+      "barkCooldown": 90000
+    }
+  },
+  "durations": {
+    "session-start-1_oh-its-you.wav": 2.19,
+    "session-start-2_hub-return.wav": 1.8,
+    "session-start-3_hub-greeting.wav": 2.55,
+    "session-start-4_powerup.wav": 1.12,
+    "stop-1_button-press.wav": 0.78,
+    "stop-2_fizzler-shutdown.wav": 1.04,
+    "stop-3_sphere-socket-lock.wav": 1.1,
+    "stop-4_laser-power-off.wav": 1.55,
+    "stop-5_powerdown.wav": 1.55,
+    "notification-1_stop-it.wav": 0.62,
+    "notification-2_no.wav": 0.54,
+    "notification-3_i-hate-you.wav": 1.61,
+    "notification-4_oh.wav": 0.76,
+    "notification-5_oops.wav": 0.94,
+    "subagent-stop-1_good.wav": 0.41,
+    "subagent-stop-2_synth-positive.wav": 0.72,
+    "subagent-stop-3_beep22.wav": 0.88,
+    "subagent-stop-4_test-chamber-pos.wav": 1.55,
+    "subagent-stop-5_good-2.wav": 0.37,
+    "send-1_editor-click.wav": 0.1,
+    "send-2_tab-click.wav": 0.09,
+    "send-3_ui-click.wav": 0.24,
+    "bark-1_anti-taunt.wav": 1.52,
+    "bark-2_anti-taunt-2.wav": 1.9
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "pack": "unreal",
+  "version": 5,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_play.wav",
+        "session-start-2_prepare.wav",
+        "session-start-3_lockandload.wav"
+      ]
+    },
+    "Stop": {
+      "files": [
+        "stop-1_flak-fire.wav",
+        "stop-2_shock-fire.wav",
+        "stop-3_sniper-fire.wav",
+        "stop-4_redeemer-shot.wav"
+      ]
+    },
+    "Notification": {
+      "files": [
+        "notification-1_godlike.wav",
+        "notification-2_holyshit.wav",
+        "notification-3_monsterkill.wav",
+        "notification-4_unstoppable.wav",
+        "notification-5_rampage.wav",
+        "notification-6_wickedsick.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_double-kill.wav",
+        "subagent-stop-3_multi-kill.wav",
+        "subagent-stop-6_killing-spree.wav"
+      ],
+      "escalation": [
+        "subagent-stop-1_double-kill.wav",
+        "subagent-stop-2_triple-kill.wav",
+        "subagent-stop-3_multi-kill.wav",
+        "subagent-stop-4_mega-kill.wav",
+        "subagent-stop-5_ultra-kill.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "clicks": [
+        "click-1_menu-click.wav",
+        "click-2_menu-select.wav",
+        "click-3_littleselect.wav"
+      ],
+      "barks": [
+        "bark-1_headshot.wav",
+        "bark-2_dominating.wav",
+        "bark-3_firstblood.wav",
+        "bark-4_flawless.wav"
+      ],
+      "barkChance": 0.25,
+      "barkCooldown": 45000
+    }
+  },
+  "durations": {
+    "session-start-1_play.wav": 1.58,
+    "session-start-2_prepare.wav": 2.04,
+    "session-start-3_lockandload.wav": 2.37,
+    "stop-1_flak-fire.wav": 1.23,
+    "stop-2_shock-fire.wav": 1.06,
+    "stop-3_sniper-fire.wav": 1.23,
+    "stop-4_redeemer-shot.wav": 1.25,
+    "notification-1_godlike.wav": 1.5,
+    "notification-2_holyshit.wav": 2.29,
+    "notification-3_monsterkill.wav": 4,
+    "notification-4_unstoppable.wav": 1.99,
+    "notification-5_rampage.wav": 1.77,
+    "notification-6_wickedsick.wav": 2.46,
+    "subagent-stop-1_double-kill.wav": 1.51,
+    "subagent-stop-3_multi-kill.wav": 1.77,
+    "subagent-stop-6_killing-spree.wav": 1.9,
+    "subagent-stop-2_triple-kill.wav": 1.7,
+    "subagent-stop-4_mega-kill.wav": 1.8,
+    "subagent-stop-5_ultra-kill.wav": 2.04,
+    "click-1_menu-click.wav": 0.09,
+    "click-2_menu-select.wav": 0.11,
+    "click-3_littleselect.wav": 0.13,
+    "bark-1_headshot.wav": 1.33,
+    "bark-2_dominating.wav": 1.62,
+    "bark-3_firstblood.wav": 1.51,
+    "bark-4_flawless.wav": 2.1
+  }
+}

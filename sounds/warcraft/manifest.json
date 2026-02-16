@@ -1,0 +1,79 @@
+{
+  "pack": "warcraft",
+  "version": 5,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_ready-to-work.wav",
+        "session-start-5_yes-milord.wav",
+        "session-start-6_peasant-ready.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "barks": [
+        "bark-1_whaddya-want.wav",
+        "bark-2_hmm.wav",
+        "bark-3_what-do-you-want.wav",
+        "bark-4_right-away.wav"
+      ],
+      "clicks": [
+        "send-1_anvil-tap-1.wav",
+        "send-2_anvil-tap-2.wav"
+      ],
+      "barkChance": 0.25,
+      "barkCooldown": 45000,
+      "annoyedBarks": [
+        "annoyed-1_me-busy.wav",
+        "annoyed-2_didnt-vote.wav",
+        "annoyed-3_being-repressed.wav"
+      ]
+    },
+    "Stop": {
+      "files": [
+        "stop-1_jobs-done.wav",
+        "stop-3_all-right.wav"
+      ],
+      "cooldown": 500
+    },
+    "Notification": {
+      "files": [
+        "notification-1_error-1.wav",
+        "notification-7_more-work.wav",
+        "notification-8_something-need-doing.wav",
+        "notification-9_whaaat.wav",
+        "notification-10_what.wav",
+        "notification-4_question-2.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_work-work.wav",
+        "subagent-stop-2_building-complete.wav",
+        "subagent-stop-3_complete-1.wav"
+      ],
+      "cooldown": 2000
+    }
+  },
+  "durations": {
+    "session-start-1_ready-to-work.wav": 1.56,
+    "session-start-5_yes-milord.wav": 0.7,
+    "session-start-6_peasant-ready.wav": 0.71,
+    "send-1_anvil-tap-1.wav": 0.09,
+    "send-2_anvil-tap-2.wav": 0.1,
+    "bark-1_whaddya-want.wav": 0.66,
+    "bark-2_hmm.wav": 0.68,
+    "bark-3_what-do-you-want.wav": 1.33,
+    "bark-4_right-away.wav": 0.7,
+    "stop-1_jobs-done.wav": 1.23,
+    "stop-3_all-right.wav": 1.2,
+    "notification-1_error-1.wav": 0.39,
+    "notification-7_more-work.wav": 0.85,
+    "notification-8_something-need-doing.wav": 1.21,
+    "notification-9_whaaat.wav": 0.93,
+    "notification-10_what.wav": 0.34,
+    "notification-4_question-2.wav": 0.26,
+    "subagent-stop-1_work-work.wav": 0.8,
+    "subagent-stop-2_building-complete.wav": 0.56,
+    "subagent-stop-3_complete-1.wav": 0.94
+  }
+}

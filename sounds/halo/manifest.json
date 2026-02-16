@@ -1,0 +1,86 @@
+{
+  "pack": "halo",
+  "version": 5,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_need-a-weapon.wav",
+        "session-start-2_slayer.wav",
+        "session-start-3_warhorn.wav"
+      ]
+    },
+    "Stop": {
+      "files": [
+        "stop-1_energy-sword.wav",
+        "stop-2_shotgun-pump.wav",
+        "stop-3_needler-fire.wav",
+        "stop-4_plasma-chargefire.wav"
+      ]
+    },
+    "Notification": {
+      "files": [
+        "notification-1_killtrocity.wav",
+        "notification-2_killimanjaro.wav",
+        "notification-3_extermination.wav",
+        "notification-4_killionaire.wav",
+        "notification-5_killtacular.wav",
+        "notification-6_killpocalypse.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_double-kill.wav",
+        "subagent-stop-3_overkill.wav",
+        "subagent-stop-4_perfection.wav"
+      ],
+      "escalation": [
+        "subagent-stop-1_double-kill.wav",
+        "subagent-stop-2_triple-kill.wav",
+        "subagent-stop-3_overkill.wav",
+        "subagent-stop-4_killtacular.wav",
+        "subagent-stop-5_killimanjaro.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "clicks": [
+        "send-1_a-button.wav",
+        "send-2_cursor.wav",
+        "send-3_magnum-ammo.wav"
+      ],
+      "barks": [
+        "bark-1_killing-spree.wav",
+        "bark-2_running-riot.wav",
+        "bark-3_killing-frenzy.wav"
+      ],
+      "barkChance": 0.15,
+      "barkCooldown": 90000
+    }
+  },
+  "durations": {
+    "session-start-1_need-a-weapon.wav": 1.83,
+    "session-start-2_slayer.wav": 1.1,
+    "session-start-3_warhorn.wav": 1.94,
+    "stop-1_energy-sword.wav": 0.77,
+    "stop-2_shotgun-pump.wav": 0.3,
+    "stop-3_needler-fire.wav": 0.44,
+    "stop-4_plasma-chargefire.wav": 0.71,
+    "notification-1_killtrocity.wav": 1.33,
+    "notification-2_killimanjaro.wav": 1.57,
+    "notification-3_extermination.wav": 1.97,
+    "notification-4_killionaire.wav": 1.1,
+    "notification-5_killtacular.wav": 1.57,
+    "notification-6_killpocalypse.wav": 1.36,
+    "subagent-stop-1_double-kill.wav": 1.1,
+    "subagent-stop-3_overkill.wav": 1.12,
+    "subagent-stop-4_perfection.wav": 1.24,
+    "subagent-stop-2_triple-kill.wav": 0.98,
+    "subagent-stop-4_killtacular.wav": 1.57,
+    "subagent-stop-5_killimanjaro.wav": 1.57,
+    "send-1_a-button.wav": 0.25,
+    "send-2_cursor.wav": 0.27,
+    "send-3_magnum-ammo.wav": 0.18,
+    "bark-1_killing-spree.wav": 1.03,
+    "bark-2_running-riot.wav": 1.1,
+    "bark-3_killing-frenzy.wav": 1.12
+  }
+}
