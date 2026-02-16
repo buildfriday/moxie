@@ -1,0 +1,75 @@
+{
+  "pack": "aoe",
+  "version": 5,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_rogan.wav",
+        "session-start-3_villager-3.wav",
+        "session-start-5_start-the-game.wav",
+        "session-start-6_age-advance.wav"
+      ]
+    },
+    "Stop": {
+      "files": [
+        "stop-1_research.wav",
+        "stop-2_gather-point.wav",
+        "stop-3_menu-select.wav"
+      ]
+    },
+    "Notification": {
+      "files": [
+        "notification-1_wololo.wav",
+        "notification-2_ayeohoho.wav",
+        "notification-3_granny.wav",
+        "session-start-7_town-bell.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_villager-trained-2.wav",
+        "subagent-stop-2_impero.wav",
+        "subagent-stop-3_building-complete.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "clicks": [
+        "send-1_command-click-1.wav",
+        "send-2_command-click-2.wav",
+        "send-3_select1.wav"
+      ],
+      "barks": [
+        "bark-1_villager-select.wav",
+        "bark-2_working.wav",
+        "session-start-1_rogan.wav",
+        "session-start-2_villager-2.wav",
+        "session-start-4_villager-4.wav"
+      ],
+      "barkChance": 0.2,
+      "barkCooldown": 60000
+    }
+  },
+  "durations": {
+    "session-start-1_rogan.wav": 0.64,
+    "session-start-3_villager-3.wav": 0.7,
+    "session-start-5_start-the-game.wav": 2.14,
+    "session-start-6_age-advance.wav": 1.41,
+    "stop-1_research.wav": 0.45,
+    "stop-2_gather-point.wav": 0.35,
+    "stop-3_menu-select.wav": 0.15,
+    "notification-1_wololo.wav": 1.52,
+    "notification-2_ayeohoho.wav": 1.61,
+    "notification-3_granny.wav": 1.9,
+    "session-start-7_town-bell.wav": 1.1,
+    "subagent-stop-1_villager-trained-2.wav": 0.54,
+    "subagent-stop-2_impero.wav": 0.76,
+    "subagent-stop-3_building-complete.wav": 1.13,
+    "send-1_command-click-1.wav": 0.1,
+    "send-2_command-click-2.wav": 0.1,
+    "send-3_select1.wav": 0.18,
+    "bark-1_villager-select.wav": 0.62,
+    "bark-2_working.wav": 0.73,
+    "session-start-2_villager-2.wav": 0.48,
+    "session-start-4_villager-4.wav": 0.57
+  }
+}

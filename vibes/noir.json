@@ -148,5 +148,7 @@
       "Messy case getting messier.",
       "Evidence piling up fast."
     ]
-  }
+  },
+  "layout": { "quipPosition": "right" },
+  "totem": "[._.]"
 }

@@ -4,3 +4,18 @@ Thumbs.db
 *.swo
 *~
 .claude/
+
+# Sound pack candidates (unprocessed source files)
+sounds/*/_candidates/
+
+# Mastering intermediates
+sounds/*/_padded/
+
+# Internal tooling (lives in buildfriday/moxie-studio)
+sounds/process.js
+sounds/evaluate.js
+sounds/audition-gen.js
+sounds/audition.html
+
+# RED tier — copyrighted movie audio, personal use only
+sounds/movie/

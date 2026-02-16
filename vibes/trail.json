@@ -149,5 +149,7 @@
       "Cool morning. Good for distance.",
       "Dew on the grass. Easy miles ahead."
     ]
-  }
+  },
+  "layout": { "quipPosition": "right" },
+  "totem": "[!]"
 }

@@ -1,0 +1,74 @@
+{
+  "pack": "doom",
+  "version": 5,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_door-open.wav",
+        "session-start-2_shotgun-cock.wav",
+        "session-start-3_chainsaw-up.wav"
+      ]
+    },
+    "Stop": {
+      "files": [
+        "stop-1_shotgun.wav",
+        "stop-2_super-shotgun.wav",
+        "stop-3_door-close.wav",
+        "stop-4_punch.wav"
+      ]
+    },
+    "Notification": {
+      "files": [
+        "notification-1_item-up.wav",
+        "notification-2_powerup.wav",
+        "notification-3_baron-sight.wav",
+        "notification-4_cyberdemon-sight.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_pistol.wav",
+        "subagent-stop-2_plasma.wav",
+        "subagent-stop-3_imp-death.wav",
+        "subagent-stop-4_platform-stop.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "clicks": [
+        "send-1_menu-select.wav",
+        "send-2_item-up.wav",
+        "send-3_ssg-open.wav"
+      ],
+      "barks": [
+        "bark-1_oof.wav",
+        "bark-2_imp-sight.wav",
+        "bark-3_pain.wav"
+      ],
+      "barkChance": 0.15,
+      "barkCooldown": 60000
+    }
+  },
+  "durations": {
+    "session-start-1_door-open.wav": 1.3,
+    "session-start-2_shotgun-cock.wav": 0.58,
+    "session-start-3_chainsaw-up.wav": 1.52,
+    "stop-1_shotgun.wav": 0.9,
+    "stop-2_super-shotgun.wav": 0.84,
+    "stop-3_door-close.wav": 1.31,
+    "stop-4_punch.wav": 0.27,
+    "notification-1_item-up.wav": 0.25,
+    "notification-2_powerup.wav": 0.77,
+    "notification-3_baron-sight.wav": 1.3,
+    "notification-4_cyberdemon-sight.wav": 1.23,
+    "subagent-stop-1_pistol.wav": 0.56,
+    "subagent-stop-2_plasma.wav": 0.56,
+    "subagent-stop-3_imp-death.wav": 0.69,
+    "subagent-stop-4_platform-stop.wav": 0.65,
+    "send-1_menu-select.wav": 0.27,
+    "send-2_item-up.wav": 0.25,
+    "send-3_ssg-open.wav": 0.2,
+    "bark-1_oof.wav": 0.4,
+    "bark-2_imp-sight.wav": 1.28,
+    "bark-3_pain.wav": 1.42
+  }
+}

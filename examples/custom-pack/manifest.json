@@ -1,0 +1,48 @@
+{
+  "pack": "my-pack",
+  "version": 1,
+  "hooks": {
+    "SessionStart": {
+      "files": [
+        "session-start-1_greeting.wav",
+        "session-start-2_hello.wav"
+      ]
+    },
+    "UserPromptSubmit": {
+      "clicks": [
+        "send-1_tap.wav"
+      ],
+      "barks": [
+        "bark-1_hmm.wav",
+        "bark-2_thinking.wav"
+      ],
+      "barkChance": 0.25,
+      "barkCooldown": 45000,
+      "annoyedBarks": [
+        "annoyed-1_again.wav"
+      ]
+    },
+    "Stop": {
+      "files": [
+        "stop-1_done.wav"
+      ],
+      "cooldown": 500
+    },
+    "Notification": {
+      "files": [
+        "notification-1_alert.wav"
+      ]
+    },
+    "SubagentStop": {
+      "files": [
+        "subagent-stop-1_complete.wav"
+      ],
+      "cooldown": 2000
+    }
+  },
+  "durations": {
+    "session-start-1_greeting.wav": 1.5,
+    "session-start-2_hello.wav": 1.2,
+    "stop-1_done.wav": 0.8
+  }
+}

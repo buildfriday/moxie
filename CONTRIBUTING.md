@@ -93,3 +93,46 @@ Colors use 256-color ANSI codes. Some useful ranges:
 - **240-255**: Grays (240=dark, 255=bright)
 
 Preview colors in your terminal: `printf '\033[38;5;44mThis is color 44\033[0m\n'`
+
+## Adding a Sound Pack
+
+Sound packs live in `sounds/{pack-name}/` with a `manifest.json` and WAV files.
+
+### Pack Categories
+
+| Category | Examples | Notes |
+|----------|---------|-------|
+| **Voice** | warcraft, glados | Unit acknowledgments, catchphrases |
+| **SFX** | default, zelda | UI sounds, chimes, mechanical effects |
+| **Hybrid** | aoe, mgs, halo | Mix of voice and SFX |
+
+### Barks/Clicks (UserPromptSubmit)
+
+UserPromptSubmit supports a split between characterful "barks" and subtle "clicks":
+
+- **Clicks**: Short (0.1-0.3s) UI sounds. Played most prompts.
+- **Barks**: Voice lines (0.5-1.5s). Played ~25% of the time with a 45s cooldown.
+
+For voice packs, add both arrays. For SFX-only packs, just use `files` (clicks only).
+
+```json
+"UserPromptSubmit": {
+  "clicks": ["click-1.wav", "click-2.wav"],
+  "barks": ["voice-1.wav", "voice-2.wav"],
+  "barkChance": 0.25,
+  "barkCooldown": 45000,
+  "files": ["click-1.wav", "click-2.wav"]
+}
+```
+
+### Sound Category Guidelines
+
+| Hook | Category | Keep it... |
+|------|----------|-----------|
+| SessionStart | Ceremony | Memorable, iconic |
+| UserPromptSubmit | Feedback | Clicks: forgettable. Barks: personality. |
+| Stop | Wallpaper | Minimal -- this fires 50+ times per session |
+| SubagentStop | Wallpaper | Short, distinct from Stop |
+| Notification | Alert | Sharp, attention-getting |
+
+See the [Style Guide](STYLE_GUIDE.md) for the full manifest schema.
