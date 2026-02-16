@@ -3,10 +3,10 @@
 //
 // Usage:
 //   moxie demo [pack]              Full session simulation (~18s)
-//   moxie demo --all               Showreel of all installed packs (~8s each)
-//   moxie demo --hook <name>       Taste test: one hook across all packs
+//   moxie demo all                 Showreel of all installed packs (~8s each)
+//   moxie demo hook <name>         Taste test: one hook across all packs
+//   moxie demo list                Print sequence without playing
 //   moxie demo --record            Clean output for screen recording
-//   moxie demo --list              Print sequence without playing
 
 const { readFileSync, existsSync, readdirSync, mkdirSync, copyFileSync } = require('fs');
 const { join, resolve } = require('path');
@@ -30,13 +30,17 @@ const GRAY = c256(245);
 const WHITE = c256(255);
 
 // --- Args ---
+// Subcommands: demo all, demo hook <name>, demo list, demo <pack>
+// Flags (modifiers): --record
+// Legacy flags still accepted: --all, --hook, --list
 const args = process.argv.slice(2);
-const flagAll = args.includes('--all');
+const RESERVED = ['all', 'hook', 'list'];
+const flagAll = args.includes('--all') || args.includes('all');
 const flagRecord = args.includes('--record');
-const flagList = args.includes('--list');
-const hookIdx = args.indexOf('--hook');
+const flagList = args.includes('--list') || args.includes('list');
+const hookIdx = Math.max(args.indexOf('--hook'), args.indexOf('hook'));
 const flagHook = hookIdx !== -1 ? args[hookIdx + 1] || null : null;
-const packArg = args.find(a => !a.startsWith('-') && a !== flagHook);
+const packArg = args.find(a => !a.startsWith('-') && !RESERVED.includes(a) && a !== flagHook);
 
 // --- Sleep (cross-platform) ---
 function sleep(ms) {
@@ -65,14 +69,40 @@ function copyDirRecursive(src, dest) {
   }
 }
 
+// --- Direct playback fallback ---
+let directPlayer = null;
+function detectPlayer() {
+  if (process.platform === 'darwin') return 'afplay';
+  if (process.platform === 'win32') {
+    try { execSync('where ffplay', { stdio: 'ignore', windowsHide: true }); return 'ffplay'; } catch {}
+  } else {
+    for (const cmd of ['ffplay', 'aplay', 'paplay']) {
+      try { execSync(`which ${cmd}`, { stdio: 'ignore' }); return cmd; } catch {}
+    }
+  }
+  return null;
+}
+
+function playDirect(filepath) {
+  if (!directPlayer) return;
+  const args = directPlayer === 'ffplay'
+    ? ['-nodisp', '-autoexit', '-loglevel', 'quiet', filepath]
+    : [filepath];
+  spawn(directPlayer, args, { detached: true, stdio: 'ignore', windowsHide: true })
+    .on('error', () => {}).unref();
+}
+
 function ensureDaemon() {
   try {
     execSync(`curl -s --connect-timeout 0.5 http://localhost:${DAEMON_PORT}/health`,
       { stdio: 'ignore', timeout: 2000, windowsHide: true });
     return true;
   } catch {}
-  const daemonPath = join(homedir(), '.moxie', 'sounds', 'daemon.js');
-  if (!existsSync(daemonPath)) return false;
+  const daemonDest = join(homedir(), '.moxie', 'sounds', 'daemon.js');
+  const daemonSrc = join(SOUNDS_DIR, 'daemon.js');
+  const daemonPath = existsSync(daemonDest) ? daemonDest
+    : existsSync(daemonSrc) ? daemonSrc : null;
+  if (!daemonPath) return false;
   spawn(process.execPath, [daemonPath, '--listen'],
     { detached: true, stdio: 'ignore', windowsHide: true }).on('error', () => {}).unref();
   sleep(500);
@@ -84,21 +114,30 @@ function ensureDaemon() {
 }
 
 function playSound(pack, file) {
-  if (flagList || !daemonAvailable) return;
-  try {
-    const out = execSync(
-      `curl -s "http://127.0.0.1:${DAEMON_PORT}/play-sound?pack=${encodeURIComponent(pack)}&file=${encodeURIComponent(file)}"`,
-      { encoding: 'utf8', timeout: 1000, windowsHide: true }
-    );
-    const res = JSON.parse(out);
-    if (res?.error) {
-      const key = `${pack}:${res.error}`;
-      if (!playbackWarnings.has(key)) {
-        playbackWarnings.add(key);
-        line(`  ${GRAY}Warning: failed to play ${pack}/${file} (${res.error})${RESET}`);
+  if (flagList) return;
+  if (daemonAvailable) {
+    try {
+      const out = execSync(
+        `curl -s "http://127.0.0.1:${DAEMON_PORT}/play-sound?pack=${encodeURIComponent(pack)}&file=${encodeURIComponent(file)}"`,
+        { encoding: 'utf8', timeout: 1000, windowsHide: true }
+      );
+      const res = JSON.parse(out);
+      if (res?.error) {
+        const key = `${pack}:${res.error}`;
+        if (!playbackWarnings.has(key)) {
+          playbackWarnings.add(key);
+          line(`  ${GRAY}Warning: failed to play ${pack}/${file} (${res.error})${RESET}`);
+        }
       }
-    }
-  } catch {}
+    } catch {}
+    return;
+  }
+  // Direct playback fallback
+  const packDir = packs.get(pack);
+  if (packDir && directPlayer) {
+    const filepath = join(packDir, file);
+    if (existsSync(filepath)) playDirect(filepath);
+  }
 }
 
 // --- Pack discovery ---
@@ -218,7 +257,7 @@ function titleCard(packName, manifest, colors) {
 function endCard(packName) {
   line();
   line(`  ${GRAY}Install: ${WHITE}moxie sounds set ${packName}${RESET}`);
-  line(`  ${GRAY}All packs: ${WHITE}moxie demo --all${RESET}`);
+  line(`  ${GRAY}All packs: ${WHITE}moxie demo all${RESET}`);
   line();
 }
 
@@ -400,9 +439,17 @@ if (packs.size === 0) {
 if (!flagList) {
   daemonAvailable = ensureDaemon();
   if (!daemonAvailable) {
-    console.log('Warning: Sound daemon not available. Showing visual output only.');
-    console.log('  Run: moxie daemon start');
-    console.log();
+    directPlayer = detectPlayer();
+    if (!directPlayer) {
+      console.log('Warning: No audio player found. Showing visual output only.');
+      const hint = process.platform === 'linux'
+        ? '  Install: aplay (alsa-utils), paplay (pulseaudio), or ffmpeg'
+        : process.platform === 'win32'
+          ? '  Install: winget install ffmpeg'
+          : '  Install: brew install ffmpeg';
+      console.log(hint);
+      console.log();
+    }
   }
 }
 

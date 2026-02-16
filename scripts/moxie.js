@@ -69,6 +69,11 @@ function copyDirRecursive(src, dest) {
   }
 }
 
+function isNewer(srcFile, destFile) {
+  if (!existsSync(destFile)) return true;
+  return statSync(srcFile).mtimeMs > statSync(destFile).mtimeMs;
+}
+
 function getDaemonPort() {
   try { return JSON.parse(readFileSync(CONFIG_FILE, 'utf8')).daemonPort || DEFAULT_PORT; }
   catch { return DEFAULT_PORT; }
@@ -89,6 +94,27 @@ function getRunningDaemonVersion() {
       { encoding: 'utf8', timeout: 2000, windowsHide: true });
     return JSON.parse(res).version || null;
   } catch { return null; }
+}
+
+function ensureSoundKeeper() {
+  const skSrc = join(REPO_DIR, 'lib', 'soundkeeper');
+  const skDest = join(MOXIE_DIR, 'lib', 'soundkeeper');
+  const skExeSrc = join(skSrc, 'SoundKeeper64.exe');
+  const skExeDest = join(skDest, 'SoundKeeper64.exe');
+  if (!existsSync(skExeSrc)) return;
+  if (!isNewer(skExeSrc, skExeDest)) return;
+  copyDirRecursive(skSrc, skDest);
+}
+
+function installAllPacks() {
+  ensureDir(join(MOXIE_DIR, 'sounds'));
+  if (!existsSync(SOUNDS_DIR)) return;
+  for (const d of readdirSync(SOUNDS_DIR)) {
+    const srcManifest = join(SOUNDS_DIR, d, 'manifest.json');
+    if (existsSync(srcManifest) && isNewer(srcManifest, join(MOXIE_DIR, 'sounds', d, 'manifest.json'))) {
+      copyDirRecursive(join(SOUNDS_DIR, d), join(MOXIE_DIR, 'sounds', d));
+    }
+  }
 }
 
 function hookCommand(hook) {
@@ -209,6 +235,10 @@ function removeSoundHooks(settings) {
 // --- Commands ---
 
 function cmdList() {
+  const active = existsSync(ACTIVE_JSON) ? readJSON(ACTIVE_JSON) : null;
+  const activeVibe = active?.name || null;
+  const activePack = active?.soundPack || null;
+
   const vibes = readdirSync(VIBES_DIR)
     .filter(f => f.endsWith('.json'))
     .map(f => f.replace('.json', ''))
@@ -221,7 +251,8 @@ function cmdList() {
     const vibeSound = data.soundPack || data.name;
     const hasSounds = existsSync(join(SOUNDS_DIR, vibeSound, 'manifest.json'));
     const tag = hasSounds ? ' [sounds]' : '';
-    console.log(`  ${v.padEnd(22)} ${agent}${tag}`);
+    const cur = v === activeVibe ? ' *' : '';
+    console.log(`  ${v.padEnd(22)} ${agent}${tag}${cur}`);
   }
 
   // Sound packs
@@ -235,14 +266,14 @@ function cmdList() {
         const manifest = readJSON(join(SOUNDS_DIR, p, 'manifest.json'));
         const count = Object.values(manifest.hooks || {})
           .reduce((sum, h) => sum + (h.files?.length || 0), 0);
-        console.log(`  ${p.padEnd(22)} ${count} sounds`);
+        const cur = p === activePack ? ' (active)' : '';
+        console.log(`  ${p.padEnd(22)} ${count} sounds${cur}`);
       }
     }
   }
 
   // Active
-  if (existsSync(ACTIVE_JSON)) {
-    const active = readJSON(ACTIVE_JSON);
+  if (active) {
     let str = active.name;
     if (active.soundPack) str += ` + ${active.soundPack} sounds`;
     console.log(`\nActive: ${str}`);
@@ -268,26 +299,25 @@ function cmdSet(vibeName) {
 
   // Sound pack: check for matching pack in repo
   const vibeSound = vibe.soundPack || vibe.name || 'default';
-  const soundPackDir = join(SOUNDS_DIR, vibeSound);
-  const hasSoundPack = existsSync(soundPackDir) && existsSync(join(soundPackDir, 'manifest.json'));
+  const hasSoundPack = existsSync(join(SOUNDS_DIR, vibeSound, 'manifest.json'));
 
+  // --- Sound packs: install ALL available packs (skip unchanged) ---
+  installAllPacks();
+
+  // Deploy daemon.js (version-gated) + Sound Keeper
+  const srcVer = getSourceDaemonVersion();
+  const runVer = getRunningDaemonVersion();
+  const daemonCurrent = srcVer && srcVer === runVer;
+  if (!daemonCurrent) {
+    stopDaemon();
+    if (existsSync(DAEMON_SRC)) copyFileSync(DAEMON_SRC, DAEMON_DEST);
+  }
+  ensureSoundKeeper();
+
+  // Determine active sound pack
   if (hasSoundPack) {
-    const srcVer = getSourceDaemonVersion();
-    const runVer = getRunningDaemonVersion();
-    const daemonCurrent = srcVer && srcVer === runVer;
-    if (!daemonCurrent) {
-      stopDaemon(); // Kill daemon + Sound Keeper before overwriting binaries
-    }
-    const destDir = join(MOXIE_DIR, 'sounds', vibeSound);
-    copyDirRecursive(soundPackDir, destDir);
-    if (!daemonCurrent) {
-      // Only copy binaries when daemon version changed (SK binary is locked while running)
-      ensureDir(join(MOXIE_DIR, 'sounds'));
-      copyFileSync(DAEMON_SRC, DAEMON_DEST);
-      const skSrc = join(REPO_DIR, 'lib', 'soundkeeper');
-      const skDest = join(MOXIE_DIR, 'lib', 'soundkeeper');
-      if (existsSync(skSrc)) copyDirRecursive(skSrc, skDest);
-    }
+    vibe.soundPack = vibeSound;
+    console.log(`Sound pack: ${vibeSound}`);
     if (daemonCurrent) {
       try {
         const port = getDaemonPort();
@@ -296,25 +326,25 @@ function cmdSet(vibeName) {
         console.log('  Daemon up-to-date — manifest reloaded');
       } catch {}
     }
-    vibe.soundPack = vibeSound;
-    console.log(`Sound pack: ${vibeSound}`);
   } else {
-    // Recommend sound pack if vibe declares one but it's not installed
     if (vibe.soundPack) {
       const installedDir = join(MOXIE_DIR, 'sounds', vibe.soundPack);
       if (existsSync(join(installedDir, 'manifest.json'))) {
-        // Pack is already installed from a previous set — just use it
         console.log(`Sound pack: ${vibe.soundPack} (installed)`);
       } else {
         console.log(`Recommended: moxie sounds set ${vibe.soundPack}`);
       }
     }
-    // Preserve existing soundPack from previous active if vibe doesn't declare one
     if (!vibe.soundPack && existsSync(ACTIVE_JSON)) {
       try {
         const prev = readJSON(ACTIVE_JSON);
         if (prev.soundPack) vibe.soundPack = prev.soundPack;
       } catch {}
+    }
+    if (!vibe.soundPack) {
+      console.log(`Note: ${vibeName} has no matching sound pack.`);
+      console.log(`  Pick one: moxie sounds set <pack>`);
+      console.log(`  Preview:  moxie demo all`);
     }
   }
 
@@ -347,18 +377,6 @@ function cmdSet(vibeName) {
 
   // Sound hooks + daemon
   if (hasSoundPack || vibe.soundPack) {
-    // Ensure daemon.js is up to date (Sound Keeper deployed via moxie set)
-    if (!hasSoundPack && existsSync(DAEMON_SRC)) {
-      const srcVer = getSourceDaemonVersion();
-      const runVer = getRunningDaemonVersion();
-      if (srcVer && srcVer === runVer) {
-        // Daemon already running right version — skip restart
-      } else {
-        stopDaemon();
-        ensureDir(join(MOXIE_DIR, 'sounds'));
-        copyFileSync(DAEMON_SRC, DAEMON_DEST);
-      }
-    }
     injectSoundHooks(settings);
     if (!hasAudioPlayer()) {
       const hint = process.platform === 'linux'
@@ -436,6 +454,9 @@ function cmdSounds(action, arg) {
       }
       const packDir = join(SOUNDS_DIR, arg);
       const installedDir = join(MOXIE_DIR, 'sounds', arg);
+
+      // Install all packs (skip unchanged), then force-refresh the target pack
+      installAllPacks();
 
       if (existsSync(packDir) && existsSync(join(packDir, 'manifest.json'))) {
         // Clean old files before copying to prevent stale WAVs from accumulating
@@ -568,6 +589,16 @@ function cmdDaemon(action) {
           return;
         }
       } catch {}
+
+      // Auto-deploy daemon if missing
+      if (!existsSync(DAEMON_DEST) && existsSync(DAEMON_SRC)) {
+        ensureDir(join(MOXIE_DIR, 'sounds'));
+        copyFileSync(DAEMON_SRC, DAEMON_DEST);
+      }
+      if (!existsSync(DAEMON_DEST)) {
+        console.error('Daemon script not found. Run: moxie set <vibe>');
+        process.exit(1);
+      }
 
       // Spawn detached
       const child = spawn('node', [DAEMON_DEST, '--listen'], {
@@ -813,9 +844,9 @@ Usage:
   moxie create <pack>        Scaffold a custom sound pack
   moxie list                 List available vibes and sound packs
   moxie demo [pack]          Showcase a sound pack (simulated session)
-  moxie demo --all           Showreel of all installed packs
-  moxie demo --hook <name>   Taste test: one hook across all packs
-  moxie demo --list          Print demo sequence without playing
+  moxie demo all             Showreel of all installed packs
+  moxie demo hook <name>     Taste test: one hook across all packs
+  moxie demo list            Print demo sequence without playing
   moxie setup                Output universal setup instructions for any AI tool
   moxie doctor               Run diagnostics (daemon, player, hooks)
   moxie sounds on            Enable sound hooks in Claude settings

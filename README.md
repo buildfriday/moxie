@@ -26,7 +26,7 @@ Your agent becomes *someone*, not something.
 - **[14 Personalities](#vibes)** -- Oregon Trail survival guide to GLaDOS to hardboiled detective
 - **[9 Sound Packs](#sounds)** -- Warcraft, Halo, Doom, C&C, and more. Your terminal has never sounded like this.
 - **[Custom Vibes](#the-interview)** -- let your agent interview you and build its own personality
-- **[One-Command Install](#quick-start)** -- `npx moxie-vibes set trail`
+- **[One-Command Install](#quick-start)** -- `npx moxie-vibes set duke`
 
 ---
 
@@ -63,7 +63,7 @@ A statusline that actually tells you something, and sounds like someone while do
 | <img src="assets/portraits/chronically-online.png" width="100"> | **[chronically-online](vibes/chronically-online.json)** -- Unhinged · no thoughts, head empty<br>Spinner: `Shitposting` · `Ratio'ing the codebase` · `Delulu is the solulu`<br>"skill issue tbh" · "understood the assignment"<br>🔥 `hot,late`: "3am posting hours, we're so back" |
 | <img src="assets/portraits/zen.png" width="100"> | **[zen](vibes/zen.json)** -- Calm mind, clean code<br>Spinner: `Breathing` · `Contemplating` · `Being present`<br>"One step at a time." · "The code is patient."<br>🔥 `hot,late`: "Deep work in deep night." |
 
-**Ready?** `npx moxie-vibes set trail` -- or keep scrolling to hear them.
+**Ready?** `npx moxie-vibes set duke` -- or keep scrolling to hear them.
 
 <details>
 <summary>Quick reference: all vibes</summary>
@@ -128,13 +128,13 @@ moxie set noir              # noir personality + noir sounds (if pack exists)
 moxie sounds set glados     # switch to GLaDOS sounds, keep noir personality
 ```
 
-When you `moxie set <vibe>`, it auto-installs a matching sound pack if one exists, or preserves your current pack.
+When you `moxie set <vibe>`, it installs all available sound packs and activates the matching one (or preserves your current pack).
 
 ![mix and match](assets/mix-match.png)
 
-Preview all packs: `moxie demo --all`
+Preview all packs: `moxie demo all`
 
-**Hear it yourself:** `npx moxie-vibes set trail` installs personality + matching sound pack. Or `moxie demo --all` to preview every pack.
+**Hear it yourself:** `npx moxie-vibes set duke` installs personality + sounds. Or `moxie demo all` to preview every pack.
 
 ---
 
@@ -154,10 +154,10 @@ Every Claude Code user should get to have this -- an agent that feels like someo
 
 ```bash
 # One command, any platform
-npx moxie-vibes set trail
+npx moxie-vibes set duke
 ```
 
-That's it. Copies vibe + statusline, updates `~/.claude/settings.json`. Requires Node.js (already installed if you're using Claude Code).
+That's it. Installs vibe, statusline, sound packs, and updates `~/.claude/settings.json`. Requires Node.js (already installed if you're using Claude Code).
 
 ### For AI Agents
 
@@ -305,7 +305,7 @@ See [`docs/build-your-own-pack.md`](docs/build-your-own-pack.md) for the complet
 ## FAQ
 
 **How do I install?**
-`npx moxie-vibes set trail` (or any vibe name). One command, any platform.
+`npx moxie-vibes set duke` (or any vibe name). One command, any platform.
 
 **Do I need jq?**
 No. The statusline scripts are Node.js -- no external dependencies beyond Node itself.
@@ -444,8 +444,8 @@ A sound pack installed to `~/.moxie/sounds/{pack}/`
 
 ```bash
 moxie demo [pack]          # Showcase a sound pack (simulated session)
-moxie demo --all           # Showreel of all installed packs
-moxie demo --hook <name>   # Taste test: one hook across all packs
+moxie demo all             # Showreel of all installed packs
+moxie demo hook <name>     # Taste test: one hook across all packs
 moxie sounds on            # Enable sound hooks
 moxie sounds off           # Disable sound hooks
 moxie sounds set <pack>    # Switch active sound pack

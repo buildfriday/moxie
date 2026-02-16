@@ -51,7 +51,7 @@ curl -s http://localhost:17380/play/SubagentStop
 
 Most AI tools have a hook or event system that runs shell commands on certain events. The setup is the same for all of them:
 
-1. **Install Moxie and a sound pack**: `npx moxie-vibes set trail` (or any vibe)
+1. **Install Moxie and a sound pack**: `npx moxie-vibes set duke` (or any vibe)
 2. **Start the daemon**: `npx moxie-vibes daemon start`
 3. **Add hooks in your AI tool** that curl the daemon endpoints
 

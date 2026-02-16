@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.1.0 -- First-Run Sound Fix (2026-02-16)
+
+### Fixed
+- **duke soundPack mismatch** -- duke vibe pointed to serious-sam pack instead of its own duke pack (20 sounds)
+- **First-run silence** -- `moxie set` now installs all sound packs (was: only matching pack). Demo and daemon can play any pack immediately.
+- **Demo direct playback** -- when daemon isn't running, demo plays via ffplay/afplay directly. No more visual-only silence.
+- **Demo daemon bootstrap** -- `ensureDaemon()` tries package source when deployed daemon doesn't exist
+- **`moxie daemon start` on fresh install** -- auto-deploys daemon.js from package source
+- **Packless vibe messaging** -- vibes without a matching sound pack show clear instructions instead of failing silently
+- **README quick-start** -- uses a vibe with sounds for working one-command install
+- **Demo pack playback** (PR #3) -- auto-installs packs and surfaces daemon errors instead of silent failure
+
 ## v2.0.0 -- 9 Sound Packs + Build Your Own (2026-02-15)
 
 First npm release with the full sound system. 9 curated sound packs, custom pack scaffolding, comprehensive build-your-own guide, 2 new vibes, and massive package cleanup.
