@@ -1,0 +1,9 @@
+# Repo docs (not needed in package)
+assets
+docs
+examples/custom-vibe.json
+.claude
+CHANGELOG.md
+CONTRIBUTING.md
+STYLE_GUIDE.md
+vibes/_shelved
