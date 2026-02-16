@@ -118,3 +118,140 @@ Vibes can optionally include a `layout` object to control statusline rendering:
 **Right layout** (default): `Guide ██████░░░░ 60% · main                    The trail grows steeper.`
 
 The `layout` field is entirely optional. Omitting it gives you the default right-aligned behavior.
+
+## Sound Pack Schema
+
+Sounds and vibes are **separate definitions, paired by default**. A vibe's `name` field maps to a sound pack of the same name. Override with `soundPack` in `active.json`.
+
+### Vibe `soundPack` Field
+
+```json
+{
+  "name": "glados",
+  "soundPack": "souls",
+  ...
+}
+```
+
+If `soundPack` is absent, falls back to the vibe's `name`. This means:
+- `pirate` personality + `pirate` sounds = default behavior
+- `glados` personality + `souls` sounds = mix and match
+- Sound packs can exist independently of vibes (e.g., `retro`, `ambient`)
+
+### Sound Manifest (`sounds/{pack}/manifest.json`)
+
+```json
+{
+  "pack": "pirate",
+  "version": 4,
+  "sources": {
+    "ship-bell-1.wav": "_candidates/ship-bell-raw.ogg",
+    "anchor-drop.wav": "_candidates/anchor-heavy.mp3"
+  },
+  "hooks": {
+    "SessionStart": {
+      "files": ["ship-bell-1.wav", "ship-bell-2.wav", "horn.wav"]
+    },
+    "UserPromptSubmit": {
+      "files": ["wood-tap.wav"]
+    },
+    "Stop": {
+      "files": ["anchor-drop.wav", "chest-open.wav"]
+    },
+    "Notification": {
+      "files": ["ship-horn-distant.wav"]
+    },
+    "SubagentStop": {
+      "files": ["wood-creak-1.wav", "wood-creak-2.wav"]
+    }
+  }
+}
+```
+
+| Field | Type | Requirement |
+|-------|------|-------------|
+| `pack` | string | Matches directory name |
+| `version` | number | Schema version (currently `4`) |
+| `sources` | object | Maps output filenames → pristine candidate paths (for idempotent remastering) |
+| `hooks` | object | Keys are hook names, values have `files` array |
+| `hooks.*.files` | string[] | 3-5 sound files per hook (pool for random selection) |
+
+### Barks/Clicks Split (UserPromptSubmit)
+
+UserPromptSubmit supports a barks/clicks split for richer feedback. When both `clicks` and `barks` are present, the daemon uses probability-based selection:
+
+```json
+"UserPromptSubmit": {
+  "clicks": ["anvil-tap-1.wav", "anvil-tap-2.wav"],
+  "barks": ["zug-zug.wav", "yes-milord.wav", "whaddya-want.wav"],
+  "barkChance": 0.25,
+  "barkCooldown": 45000,
+  "files": ["anvil-tap-1.wav", "anvil-tap-2.wav"]
+}
+```
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `clicks` | string[] | -- | Short, low-character sounds (0.1-0.3s). Played most of the time. |
+| `barks` | string[] | -- | Voice lines or characterful sounds (0.5-1.5s). Played with probability. |
+| `barkChance` | number | 0.25 | Probability of bark vs click (0-1) |
+| `barkCooldown` | number | 45000 | Minimum ms between barks |
+| `files` | string[] | -- | Backward compat fallback (used when clicks/barks absent) |
+
+When `clicks` and `barks` are absent, the engine falls through to `files` (current behavior unchanged).
+
+### Supported Hooks
+
+| Hook | Fires When | Frequency | Max Duration |
+|------|-----------|-----------|-------------|
+| `SessionStart` | New Claude Code session begins | Once per session | 3s |
+| `UserPromptSubmit` | User sends a message | Every prompt | 0.1-1.5s |
+| `Stop` | Claude finishes a response | Every turn | 1.5s |
+| `Notification` | Agent sends a notification | Occasional | 2s |
+| `SubagentStop` | A subagent completes | Per subagent (can batch) | 1s |
+
+### Sound Categories
+
+Every hook falls on two axes: frequency x character level.
+
+| Hook | Category | Frequency | Character Level | Variants |
+|------|----------|-----------|-----------------|----------|
+| SessionStart | **Ceremony** | 1/session | Maximum | 3-5 |
+| UserPromptSubmit | **Feedback** | 10-20/session | High (barks) / Low (clicks) | 3-5 barks + 2-3 clicks |
+| Stop | **Wallpaper** | 50+/session | Minimal | 2-3 |
+| SubagentStop | **Wallpaper** | Variable, bursts | Minimal, distinct from Stop | 2-3 |
+| Notification | **Alert** | Rare | Sharpest | 3-5 |
+
+**Key rule**: Fewer variants on high-frequency hooks = less cognitive load. More variants on low-frequency hooks = surprise and delight.
+
+### Recommended Cooldowns
+
+| Hook | Voice Packs | SFX Packs |
+|------|-------------|-----------|
+| SessionStart | -- | -- |
+| UserPromptSubmit | 50 | 50 |
+| Stop | 500 | 100 |
+| SubagentStop | 2000 | 1000 |
+| Notification | -- | -- |
+
+### Pack Building Philosophy
+
+1. **Match the action** -- Find sounds that naturally represent the hook's developer action (greeting, completion, alert, task done)
+2. **Then pick iconic** -- Prefer the franchise's most recognizable version of that action
+3. **Never chop** -- Find naturally short sounds. Don't trim longer ones to fit. If nothing fits, leave the hook empty (engine silently skips it)
+4. **Pool size** -- 2-5 variants per hook (engine picks random, no consecutive repeats)
+
+### Sound File Requirements
+
+- **Format**: WAV only (44.1kHz, mono, 16-bit PCM). Use `node sounds/process.js {pack}` to convert and master.
+- **Duration**: See max duration per hook above. Shorter is better for frequent hooks.
+- **Loudness**: -18 LUFS (processed by `sounds/process.js`)
+- **Naming**: Lowercase, hyphenated, descriptive (e.g., `ship-bell-1.wav`)
+- **Pool size**: 2-5 variants per hook prevents repetition fatigue
+
+### Engine Behavior
+
+- Picks random file from the pool, no consecutive repeats
+- Fire-and-forget -- sound plays in detached background process
+- macOS: `afplay` (built-in), Windows/Linux: `ffplay` (via ffmpeg)
+- Silent exit on any error (missing files, no ffplay, etc.)
