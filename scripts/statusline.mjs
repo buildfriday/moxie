@@ -4,6 +4,10 @@
 // Usage: Set in ~/.claude/settings.json:
 //   "statusLine": { "type": "command", "command": "node ~/.moxie/statusline.mjs" }
 //
+// Bridge mode (for ccstatusline widget):
+//   node ~/.moxie/statusline.mjs --bridge
+//   Outputs: AgentName · "quip" (no git info, reads cache only)
+//
 // Input: JSON on stdin from Claude Code (context_window.used_percentage, etc.)
 // Output: Single-line ANSI status bar
 
@@ -73,6 +77,9 @@ if (inputJson?.cost?.total_duration_ms != null) {
 }
 const sessionMin = Math.floor(sessionMs / 60000);
 
+// --- Bridge mode (--bridge) ---
+const bridgeMode = process.argv.includes('--bridge');
+
 // --- Context bar (10 chars) ---
 const filled = Math.floor(contextPct / 10);
 const empty = 10 - filled;
@@ -91,17 +98,18 @@ const cacheTTL = 30;
 let gitInfo = { branch: '', worktree: false, worktreeName: '', ahead: 0, dirty: false, behind: 0 };
 let cacheValid = false;
 
+// Bridge mode reads cache only (no git commands)
 if (existsSync(cacheFile)) {
   try {
     const cacheAge = (Date.now() - statSync(cacheFile).mtimeMs) / 1000;
-    if (cacheAge < cacheTTL) {
+    if (cacheAge < (bridgeMode ? 60 : cacheTTL)) {
       gitInfo = JSON.parse(readFileSync(cacheFile, 'utf8'));
       cacheValid = true;
     }
   } catch {}
 }
 
-if (!cacheValid) {
+if (!cacheValid && !bridgeMode) {
   const gitC = projectDir ? ['-C', projectDir] : [];
 
   try {
@@ -223,14 +231,46 @@ if (!quipCacheValid && vibe?.quips) {
   try { writeFileSync(quipCacheFile, JSON.stringify({ quip })); } catch {}
 }
 
+// --- Bridge mode output ---
+if (bridgeMode) {
+  const bullet = `${C.Dim}\u00B7${C.Reset}`;
+  process.stdout.write(`${C.Name}${agentName}${C.Reset} ${bullet} ${C.Quip}${quip}${C.Reset}\n`);
+  process.exit(0);
+}
+
 // --- Layout option ---
 const quipPosition = vibe?.layout?.quipPosition || 'right';
+
+// --- ANSI 256 helper ---
+function ansi256(code, text) {
+  return `\x1b[38;5;${code}m${text}\x1b[0m`;
+}
 
 // --- Build status line ---
 const bullet = `${C.Dim}\u00B7${C.Reset}`;
 const parts = [];
 
 parts.push(`${C.Name}${agentName}${C.Reset}`);
+
+// --- Totem rendering (with gradation + context coloring) ---
+const totem = vibe?.totem || '';
+if (totem) {
+  let displayTotem = totem;
+  const totemStages = vibe?.totemStages;
+  if (totemStages?.length) {
+    for (let i = totemStages.length - 1; i >= 0; i--) {
+      const stage = totemStages[i];
+      if (stage?.threshold != null && stage?.totem && contextPct >= stage.threshold) {
+        displayTotem = stage.totem;
+        break;
+      }
+    }
+  }
+  const totemColor = contextPct > 80 ? warningColor
+    : contextPct > 60 ? accentColor : primaryColor;
+  parts.push(ansi256(totemColor, displayTotem));
+}
+
 parts.push(`${bar} ${C.Reset}${contextPct}%`);
 parts.push(bullet);
 parts.push(`${C.Primary}${gitInfo.branch}${C.Reset}`);
