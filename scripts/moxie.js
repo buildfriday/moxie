@@ -382,9 +382,11 @@ function cmdSet(vibeName) {
     }).on('error', () => {}).unref();
   }
 
-  // ccstatusline integration hint
+  // ccstatusline integration hint (only if binary is installed, not just leftover config)
   const ccslConfig = join(homedir(), '.config', 'ccstatusline', 'settings.json');
-  if (existsSync(ccslConfig)) {
+  let hasCcsl = false;
+  try { execSync(process.platform === 'win32' ? 'where ccstatusline' : 'which ccstatusline', { stdio: 'ignore', windowsHide: true }); hasCcsl = true; } catch {}
+  if (hasCcsl && existsSync(ccslConfig)) {
     const bridgePath = join(MOXIE_DIR, 'statusline.mjs').replace(/\\/g, '/');
     console.log('\nccstatusline detected. To add moxie as a widget:');
     console.log(`  Add a "custom-command" widget to ${ccslConfig.replace(/\\/g, '/')}`);
