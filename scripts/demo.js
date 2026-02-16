@@ -8,7 +8,7 @@
 //   moxie demo --record            Clean output for screen recording
 //   moxie demo --list              Print sequence without playing
 
-const { readFileSync, existsSync, readdirSync } = require('fs');
+const { readFileSync, existsSync, readdirSync, mkdirSync, copyFileSync } = require('fs');
 const { join, resolve } = require('path');
 const { homedir } = require('os');
 const { spawn, execSync } = require('child_process');
@@ -16,6 +16,7 @@ const { spawn, execSync } = require('child_process');
 const MOXIE_DIR = join(homedir(), '.moxie');
 const REPO_DIR = resolve(__dirname, '..');
 const SOUNDS_DIR = join(REPO_DIR, 'sounds');
+const INSTALLED_SOUNDS_DIR = join(MOXIE_DIR, 'sounds');
 const ACTIVE_JSON = join(MOXIE_DIR, 'active.json');
 
 // --- ANSI helpers ---
@@ -48,6 +49,21 @@ const DAEMON_PORT = (() => {
   catch { return 17380; }
 })();
 let daemonAvailable = false;
+const playbackWarnings = new Set();
+
+function ensureDir(dir) {
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+}
+
+function copyDirRecursive(src, dest) {
+  ensureDir(dest);
+  for (const entry of readdirSync(src, { withFileTypes: true })) {
+    const srcPath = join(src, entry.name);
+    const destPath = join(dest, entry.name);
+    if (entry.isDirectory()) copyDirRecursive(srcPath, destPath);
+    else copyFileSync(srcPath, destPath);
+  }
+}
 
 function ensureDaemon() {
   try {
@@ -70,10 +86,18 @@ function ensureDaemon() {
 function playSound(pack, file) {
   if (flagList || !daemonAvailable) return;
   try {
-    execSync(
+    const out = execSync(
       `curl -s "http://127.0.0.1:${DAEMON_PORT}/play-sound?pack=${encodeURIComponent(pack)}&file=${encodeURIComponent(file)}"`,
-      { stdio: 'ignore', timeout: 1000, windowsHide: true }
+      { encoding: 'utf8', timeout: 1000, windowsHide: true }
     );
+    const res = JSON.parse(out);
+    if (res?.error) {
+      const key = `${pack}:${res.error}`;
+      if (!playbackWarnings.has(key)) {
+        playbackWarnings.add(key);
+        line(`  ${GRAY}Warning: failed to play ${pack}/${file} (${res.error})${RESET}`);
+      }
+    }
   } catch {}
 }
 
@@ -90,15 +114,27 @@ function findPacks() {
   }
 
   // Installed packs (override repo)
-  const installedDir = join(MOXIE_DIR, 'sounds');
-  if (existsSync(installedDir)) {
-    for (const d of readdirSync(installedDir)) {
-      const mf = join(installedDir, d, 'manifest.json');
-      if (existsSync(mf)) packs.set(d, join(installedDir, d));
+  if (existsSync(INSTALLED_SOUNDS_DIR)) {
+    for (const d of readdirSync(INSTALLED_SOUNDS_DIR)) {
+      const mf = join(INSTALLED_SOUNDS_DIR, d, 'manifest.json');
+      if (existsSync(mf)) packs.set(d, join(INSTALLED_SOUNDS_DIR, d));
     }
   }
 
   return packs;
+}
+
+function ensurePackInstalled(packName, sourceDir) {
+  const installedDir = join(INSTALLED_SOUNDS_DIR, packName);
+  if (existsSync(join(installedDir, 'manifest.json'))) return installedDir;
+  if (!existsSync(join(sourceDir, 'manifest.json'))) return sourceDir;
+  try {
+    copyDirRecursive(sourceDir, installedDir);
+    return installedDir;
+  } catch (e) {
+    line(`  ${GRAY}Warning: could not install pack ${packName} for demo (${e.message})${RESET}`);
+    return sourceDir;
+  }
 }
 
 function loadPackManifest(packDir) {
@@ -378,6 +414,9 @@ if (flagHook) {
     console.error(`Valid hooks: ${validHooks.join(', ')}`);
     process.exit(1);
   }
+  if (daemonAvailable) {
+    for (const [name, dir] of packs) packs.set(name, ensurePackInstalled(name, dir));
+  }
   tasteTest(flagHook, packs);
   process.exit(0);
 }
@@ -385,6 +424,9 @@ if (flagHook) {
 if (flagAll) {
   // Showreel mode
   const packNames = [...packs.keys()].sort();
+  if (daemonAvailable) {
+    for (const name of packNames) packs.set(name, ensurePackInstalled(name, packs.get(name)));
+  }
   line();
   line(`  ${WHITE}${BOLD}moxie showreel${RESET} ${GRAY}\u00B7 ${packNames.length} packs${RESET}`);
   line();
@@ -431,7 +473,11 @@ if (!packs.has(targetPack)) {
 }
 
 const packDir = packs.get(targetPack);
-const manifest = loadPackManifest(packDir);
+if (daemonAvailable) {
+  packs.set(targetPack, ensurePackInstalled(targetPack, packDir));
+}
+const resolvedPackDir = packs.get(targetPack);
+const manifest = loadPackManifest(resolvedPackDir);
 if (!manifest) {
   console.error(`Could not load manifest for: ${targetPack}`);
   process.exit(1);
