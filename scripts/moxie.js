@@ -126,8 +126,10 @@ function hookCommand(hook) {
     // invokes via bash (Claude Code CLI) or PowerShell (Cursor, etc.)
     // curl.exe avoids PowerShell's curl→Invoke-WebRequest alias
     // No quotes around daemon path — inner quotes break cmd.exe /c parsing
+    // Double-slash flags (//d //q //c) prevent MSYS/Git Bash path conversion
+    // while remaining valid for cmd.exe, PowerShell, and native shells
     const curl = `curl.exe -s --connect-timeout 0.1 http://localhost:${port}/play/${hook}`;
-    return `cmd.exe /d /q /c "if not defined MOXIE_SILENT (${curl} || node ${daemon} ${hook})"`;
+    return `cmd.exe //d //q //c "if not defined MOXIE_SILENT (${curl} || node ${daemon} ${hook})"`;
   }
   const curl = `curl -s --connect-timeout 0.1 http://localhost:${port}/play/${hook}`;
   const fallback = `node "${daemon}" ${hook}`;
