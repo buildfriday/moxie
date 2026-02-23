@@ -11,7 +11,8 @@
     "accent": "214",
     "warning": "204",
     "dim": "245",
-    "worktree": "170"
+    "worktree": "170",
+    "directory": "117"
   },
   "spinnerVerbs": {
     "mode": "replace",
