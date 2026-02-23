@@ -3,7 +3,8 @@
   "description": "no thoughts, head empty",
   "version": "1.0",
   "agent": { "name": "Unhinged", "nameColor": "201" },
-  "palette": { "primary": "201", "accent": "51", "warning": "46", "dim": "141" },
+  "palette": { "primary": "201", "accent": "51", "warning": "46", "dim": "141",
+    "directory": "117" },
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [

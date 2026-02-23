@@ -10,7 +10,8 @@
     "primary": "204",
     "accent": "209",
     "warning": "196",
-    "dim": "138"
+    "dim": "138",
+    "directory": "209"
   },
   "spinnerVerbs": {
     "mode": "replace",
