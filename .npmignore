@@ -3,6 +3,18 @@ assets
 docs
 examples/custom-vibe.json
 .claude
+.agents
 CHANGELOG.md
 CONTRIBUTING.md
 STYLE_GUIDE.md
+
+# Dev / experiments — never ship (poc alone is ~214MB and caused npm E413)
+poc
+joke.html
+**/.git
+**/node_modules
+**/__pycache__
+*.pyc
+.git
+.gitignore
+.npmignore
