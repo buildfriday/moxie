@@ -1,6 +1,6 @@
 {
   "name": "moxie-vibes",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Personality for Claude Code & friends — sounds, quips, spinner verbs, statusline",
   "bin": {
     "moxie": "./scripts/moxie.js"

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Moxie sound daemon v4 — Sound Keeper + spawn-per-sound.
+// Moxie sound daemon v5 — Sound Keeper + spawn-per-sound + burst suppression.
 // Mode 1 (bootstrap): node daemon.js <hook>  — spawns daemon with --play <hook>, exits immediately
 // Mode 2 (listen):    node daemon.js --listen [--play <hook>] — daemon mode, optional startup sound
 //
@@ -26,13 +26,18 @@ const MAX_LOG_LINES = 100;
 const HISTORY_SIZE = 20;
 const DEFAULT_COOLDOWNS = {
   SessionStart: 3000,
-  UserPromptSubmit: 100,
+  UserPromptSubmit: 1000,
   Stop: 1500,
   SubagentStop: 1000,
   Notification: 2000,
 };
-const DEFAULT_COOLDOWN = 100; // fallback for unknown hooks
-const DAEMON_VERSION = '5.0';
+const DEFAULT_COOLDOWN = 1000; // fallback for unknown hooks
+const DAEMON_VERSION = '5.1';
+
+// --- Burst suppression (machine-speed repetition) ---
+const BURST_WINDOW = 1500;     // events closer than this = rapid
+const BURST_THRESHOLD = 3;     // need 3+ rapid events to enter burst
+const RECOVERY_WINDOW = 3000;  // 3s silence = burst over
 
 // --- Shared state ---
 let manifestCache = null; // { manifest, packDir, mtime }
@@ -60,6 +65,7 @@ let lastRare = null;      // last rare bark filename (no-repeat)
 let streaks = {};         // { hookName: { count, lastTime } } — escalation tracking
 let promptTimes = [];     // circular buffer for annoyed ping detection
 let lastAnnoyed = null;   // last annoyed bark filename (no-repeat)
+let burstState = {};      // { hook: { count, lastEvent, active } }
 
 // --- Tuning (loaded from config, overrides manifest defaults) ---
 let TUNING = { barkChance: null, barkCooldown: null, stopSuppressionWindow: null };
@@ -365,6 +371,53 @@ function handlePlay(hook) {
     }
   }
 
+  // --- Burst suppression (machine-speed repetition) ---
+  if (!burstState[hook]) burstState[hook] = { count: 0, lastEvent: 0, active: false };
+  const bs = burstState[hook];
+  const sinceLast = now - bs.lastEvent;
+  bs.lastEvent = now;
+
+  if (sinceLast < BURST_WINDOW) {
+    bs.count++;
+  } else {
+    // Gap detected — check if exiting burst
+    if (bs.active && sinceLast > RECOVERY_WINDOW) {
+      bs.active = false;
+      bs.count = 1;
+      // Play burst-end sound if configured
+      if (hookCfg.burstEnd?.length) {
+        const pick = pickSound(hook + ':burstEnd', hookCfg.burstEnd);
+        const fullPath = join(m.packDir, pick);
+        if (existsSync(fullPath)) {
+          playSound(fullPath);
+          lastPlay[hook] = now;
+          lastPlayGlobal[hook] = now;
+          const dur = m.manifest.durations?.[pick];
+          if (dur) lastBarkEnd = now + Math.ceil(dur * 1000);
+          log(`${hook} → ${pick} (burst-end)`);
+          const entry = { hook, file: pick, time: ts(), fizzled: false, pool: 'burstEnd' };
+          playHistory.push(entry);
+          if (playHistory.length > HISTORY_SIZE) playHistory.shift();
+          return { played: true, file: pick, pool: 'burstEnd' };
+        }
+      }
+      // No burstEnd configured — fall through to normal play
+    } else {
+      bs.count = 1; // reset on gap (not a burst recovery, just normal spacing)
+    }
+  }
+
+  if (bs.active) {
+    log(`${hook} → skipped (burst)`);
+    return { skipped: true, reason: 'burst' };
+  }
+
+  if (bs.count >= BURST_THRESHOLD) {
+    bs.active = true;
+    log(`${hook} → burst started (${bs.count} events in ${BURST_WINDOW}ms window)`);
+    return { skipped: true, reason: 'burst' };
+  }
+
   // --- Annoyed ping (rapid prompt spam detection) ---
   if (hook === 'UserPromptSubmit' && hookCfg.annoyedBarks?.length) {
     promptTimes.push(now);
@@ -487,6 +540,7 @@ function createServer(port) {
         lastError: lastError,
         activeChildren: activeChildren,
         skRestarts: skRestarts,
+        bursts: Object.fromEntries(Object.entries(burstState).map(([k, v]) => [k, { active: v.active, count: v.count }])),
         history: playHistory.slice(-HISTORY_SIZE)
       }));
       return;
@@ -573,6 +627,7 @@ function createServer(port) {
     startSoundKeeper();
     checkPlayerHealth();
     loadTuning();
+    setInterval(rotateLog, 60000);
 
     // Play startup-queued hook after Sound Keeper warms WASAPI
     const playIdx = process.argv.indexOf('--play');

@@ -26,7 +26,8 @@
         "annoyed-1_me-busy.wav",
         "annoyed-2_didnt-vote.wav",
         "annoyed-3_being-repressed.wav"
-      ]
+      ],
+      "burstEnd": ["bark-1_whaddya-want.wav"]
     },
     "Stop": {
       "files": [
@@ -51,7 +52,8 @@
         "subagent-stop-2_building-complete.wav",
         "subagent-stop-3_complete-1.wav"
       ],
-      "cooldown": 2000
+      "cooldown": 2000,
+      "burstEnd": ["stop-1_jobs-done.wav"]
     }
   },
   "durations": {

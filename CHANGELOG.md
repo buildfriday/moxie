@@ -1,5 +1,20 @@
 # Changelog
 
+## v2.2.0 -- Burst Suppression + Grok/WSL Windows hooks (2026-07-28)
+
+### Added
+- **Burst suppression** -- machine-speed repetition (background subagent churn) detected and silenced after 3 rapid events (<1.5s apart). Recovery after 3s silence plays a burst-end sound. Human-speed prompts (2-5s apart) pass through normally.
+- **Burst-end sounds** -- configurable per-hook `burstEnd` array in manifest. Warcraft: "whaddya want?" after UserPromptSubmit flood, "jobs done" after SubagentStop batch.
+- **Burst state in health endpoint** -- `GET /health` now includes active burst states per hook for debugging.
+- **Log rotation interval** -- daemon log trimmed every 60s (was: only at startup).
+
+### Fixed
+- **Windows sound hooks under WSL bash (Grok)** -- absolute `C:/Users/<name>/...` paths inside `cmd /c` were mangled when the parent invoker was WSL bash (error: `'hris' is not recognized`, exit 1 → red `stop [hooks:1]`). Hooks now use `%USERPROFILE%\.moxie\sounds\daemon.js` and always `exit /b 0` (parity with Unix `|| true`) so optional sounds never fail the harness. Claude/Git Bash and bare cmd still work.
+
+### Changed
+- **Base cooldowns raised** -- `DEFAULT_COOLDOWN` 100ms → 1000ms, `UserPromptSubmit` 100ms → 1000ms. No hook plays faster than 1/second.
+- **Daemon version** -- 5.0 → 5.1
+
 ## v2.1.0 -- First-Run Sound Fix (2026-02-16)
 
 ### Fixed

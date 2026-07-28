@@ -118,19 +118,22 @@ function installAllPacks() {
 }
 
 function hookCommand(hook) {
-  const daemon = DAEMON_DEST.replace(/\\/g, '/');
   const port = getDaemonPort();
 
   if (process.platform === 'win32') {
-    // cmd.exe wrapper makes this shell-agnostic — works whether the parent
-    // invokes via bash (Claude Code CLI) or PowerShell (Cursor, etc.)
-    // curl.exe avoids PowerShell's curl→Invoke-WebRequest alias
-    // No quotes around daemon path — inner quotes break cmd.exe /c parsing
-    // Double-slash flags (//d //q //c) prevent MSYS/Git Bash path conversion
-    // while remaining valid for cmd.exe, PowerShell, and native shells
+    // Invokers we must support: cmd, PowerShell, Git Bash (MSYS), WSL bash (Grok).
+    //
+    // //d //q //c — MSYS won't rewrite these to drive paths (Git Bash / Claude Code).
+    // %USERPROFILE%\.moxie\... — never put C:/Users/<name>/... inside cmd /c.
+    //   WSL bash mangles that string so cmd sees a broken path ('hris' not recognized).
+    // curl.exe — not PowerShell's curl→Invoke-WebRequest alias.
+    // & exit /b 0 — match Unix `|| true`: optional sounds must not fail the harness
+    //   (Grok paints red stop [hooks:1] on non-zero).
     const curl = `curl.exe -s --connect-timeout 0.1 http://localhost:${port}/play/${hook}`;
-    return `cmd.exe //d //q //c "if not defined MOXIE_SILENT (${curl} || node ${daemon} ${hook})"`;
+    const nodeFb = `node %USERPROFILE%\\.moxie\\sounds\\daemon.js ${hook}`;
+    return `cmd.exe //d //q //c "if not defined MOXIE_SILENT (${curl} || ${nodeFb}) & exit /b 0"`;
   }
+  const daemon = DAEMON_DEST.replace(/\\/g, '/');
   const curl = `curl -s --connect-timeout 0.1 http://localhost:${port}/play/${hook}`;
   const fallback = `node "${daemon}" ${hook}`;
   return `[ -z "$MOXIE_SILENT" ] && { ${curl} || ${fallback}; } || true`;
