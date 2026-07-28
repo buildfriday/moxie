@@ -178,11 +178,24 @@ function hasAudioPlayer() {
   return (_audioPlayerCached = false);
 }
 
+function isMoxieCommand(command) {
+  if (!command || typeof command !== 'string') return false;
+  return command.includes('sounds/daemon.js') ||
+    command.includes('%USERPROFILE%\\.moxie') ||
+    command.includes(`localhost:${getDaemonPort()}`);
+}
+
 function isMoxieSoundHook(entry) {
   if (!entry || !entry.hooks) return false;
-  return entry.hooks.some(h => h.command &&
-    (h.command.includes('sounds/daemon.js') ||
-     h.command.includes(`localhost:${getDaemonPort()}`)));
+  return entry.hooks.some(h => isMoxieCommand(h.command));
+}
+
+/** Strip moxie commands from an entry; keep co-located non-moxie hooks (e.g. friday-hooks). */
+function stripMoxieFromEntry(entry) {
+  if (!entry || !entry.hooks) return null;
+  const kept = entry.hooks.filter(h => !isMoxieCommand(h.command));
+  if (kept.length === 0) return null;
+  return { ...entry, hooks: kept };
 }
 
 function soundHooksInstalled(settings) {
@@ -202,7 +215,10 @@ function injectSoundHooks(settings) {
 
   for (const hook of SOUND_HOOKS) {
     if (!settings.hooks[hook]) settings.hooks[hook] = [];
-    settings.hooks[hook] = settings.hooks[hook].filter(e => !isMoxieSoundHook(e));
+    // Per-command strip — never drop a whole matcher group that also has non-moxie hooks
+    settings.hooks[hook] = settings.hooks[hook]
+      .map(stripMoxieFromEntry)
+      .filter(Boolean);
     settings.hooks[hook].push({
       matcher: '*',
       hooks: [{ type: 'command', command: hookCommand(hook) }]
@@ -210,7 +226,13 @@ function injectSoundHooks(settings) {
   }
   for (const th of TOOL_HOOKS) {
     if (!settings.hooks[th.event]) settings.hooks[th.event] = [];
-    settings.hooks[th.event] = settings.hooks[th.event].filter(e => !isMoxieSoundHook(e));
+    settings.hooks[th.event] = settings.hooks[th.event]
+      .map(e => {
+        // Only strip moxie from matching matcher groups
+        if (e.matcher !== th.matcher) return e;
+        return stripMoxieFromEntry(e);
+      })
+      .filter(Boolean);
     settings.hooks[th.event].push({
       matcher: th.matcher,
       hooks: [{ type: 'command', command: hookCommand(th.sound) }]
@@ -224,13 +246,20 @@ function removeSoundHooks(settings) {
 
   for (const hook of SOUND_HOOKS) {
     if (settings.hooks[hook]) {
-      settings.hooks[hook] = settings.hooks[hook].filter(e => !isMoxieSoundHook(e));
+      settings.hooks[hook] = settings.hooks[hook]
+        .map(stripMoxieFromEntry)
+        .filter(Boolean);
       if (settings.hooks[hook].length === 0) delete settings.hooks[hook];
     }
   }
   for (const th of TOOL_HOOKS) {
     if (settings.hooks[th.event]) {
-      settings.hooks[th.event] = settings.hooks[th.event].filter(e => !isMoxieSoundHook(e));
+      settings.hooks[th.event] = settings.hooks[th.event]
+        .map(e => {
+          if (e.matcher !== th.matcher) return e;
+          return stripMoxieFromEntry(e);
+        })
+        .filter(Boolean);
       if (settings.hooks[th.event].length === 0) delete settings.hooks[th.event];
     }
   }

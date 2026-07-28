@@ -10,6 +10,7 @@
 
 ### Fixed
 - **Windows sound hooks under WSL bash (Grok)** -- absolute `C:/Users/<name>/...` paths inside `cmd /c` were mangled when the parent invoker was WSL bash (error: `'hris' is not recognized`, exit 1 → red `stop [hooks:1]`). Hooks now use `%USERPROFILE%\.moxie\sounds\daemon.js` and always `exit /b 0` (parity with Unix `|| true`) so optional sounds never fail the harness. Claude/Git Bash and bare cmd still work.
+- **`moxie set` no longer drops co-located non-moxie hooks** -- previously any matcher group that contained a moxie command was removed wholesale, wiping e.g. friday-hooks on SessionStart/UserPromptSubmit. Strip is per-command now.
 
 ### Changed
 - **Base cooldowns raised** -- `DEFAULT_COOLDOWN` 100ms → 1000ms, `UserPromptSubmit` 100ms → 1000ms. No hook plays faster than 1/second.
