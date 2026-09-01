@@ -42,6 +42,9 @@ if (vibe) {
 let worktreeColor = accentColor;
 if (vibe?.palette?.worktree) worktreeColor = vibe.palette.worktree;
 
+let directoryColor = accentColor;
+if (vibe?.palette?.directory) directoryColor = vibe.palette.directory;
+
 // --- ANSI Colors (256-color) ---
 const C = {
   Name:    `\x1b[38;5;${nameColorCode}m`,
@@ -53,6 +56,7 @@ const C = {
   Dim:     `\x1b[38;5;${dimColor}m`,
   Accent:  `\x1b[38;5;${accentColor}m`,
   Worktree: `\x1b[38;5;${worktreeColor}m`,
+  Directory: `\x1b[38;5;${directoryColor}m`,
   Reset:   '\x1b[0m',
 };
 
@@ -69,6 +73,10 @@ if (inputJson?.context_window?.used_percentage != null) {
   contextPct = Math.floor(Number(inputJson.context_window.used_percentage));
 }
 contextPct = Math.max(0, Math.min(100, contextPct));
+
+// --- Current directory (full path without drive letter) ---
+const currentDir = inputJson?.workspace?.current_dir || '';
+const folderName = currentDir ? currentDir.replace(/^[A-Za-z]:/, '') : '';
 
 // --- Session duration ---
 let sessionMs = 0;
@@ -274,6 +282,12 @@ if (totem) {
 parts.push(`${bar} ${C.Reset}${contextPct}%`);
 parts.push(bullet);
 parts.push(`${C.Primary}${gitInfo.branch}${C.Reset}`);
+
+const showDirectory = vibe?.layout?.showDirectory ?? true;
+if (showDirectory && folderName) {
+  parts.push(bullet);
+  parts.push(`${C.Directory}${folderName}${C.Reset}`);
+}
 
 if (gitInfo.ahead > 0) {
   parts.push(`${C.Dim}\u2191${gitInfo.ahead}${C.Reset}`);

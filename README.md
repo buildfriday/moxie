@@ -39,6 +39,7 @@ A statusline that actually tells you something, and sounds like someone while do
 - **Agent name** -- your AI gets an identity, rendered in your chosen color
 - **Context bar** -- color shifts primary -> accent -> warning as it fills. All colors from your vibe palette.
 - **Git branch + worktree** -- always visible, no hunting
+- **Working directory** -- full path in the statusline (toggle with `layout.showDirectory`)
 - **Contextual quips** -- rotate every 45s, respond to time of day, git state, context depth
 - **Spinner verbs** -- replace "Working..." with character-appropriate verbs like "Scheming" or "Fording the river"
 
@@ -256,7 +257,8 @@ The format:
     "accent": "214",
     "warning": "204",
     "dim": "245",
-    "worktree": "170"
+    "worktree": "170",
+    "directory": "117"
   },
   "spinnerVerbs": {
     "mode": "replace",
@@ -270,12 +272,13 @@ The format:
     "dirty": ["Uncommitted changes quips"]
   },
   "layout": {
-    "quipPosition": "right"
+    "quipPosition": "right",
+    "showDirectory": true
   }
 }
 ```
 
-The `layout` field is optional. Set `quipPosition` to `"inline"` for compact display, or omit the field entirely for default right-aligned quips.
+The `layout` field is optional. Set `quipPosition` to `"inline"` for compact display, or omit the field entirely for default right-aligned quips. Set `showDirectory` to `true` to display the current working directory path in the statusline (enabled by default), or `false` to hide it.
 
 Colors are 256-color ANSI codes. Preview in your terminal:
 ```bash
@@ -379,6 +382,7 @@ It outputs a single ANSI-colored line with:
 - Context bar (10-char, color shifts as context fills)
 - Context percentage
 - Git branch + ahead/behind indicators
+- Current working directory (full path without drive letter, enabled by default -- disable with `layout.showDirectory: false`)
 - Worktree name (if applicable)
 - Quip (contextual, rotated every 45s) -- right-aligned by default, or inline with `layout.quipPosition: "inline"`
 

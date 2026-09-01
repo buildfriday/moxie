@@ -17,7 +17,9 @@ Formal schema spec for moxie vibe JSON files. All built-in vibes meet these requ
     "primary": "44",
     "accent": "214",
     "warning": "204",
-    "dim": "245"
+    "dim": "245",
+    "worktree": "170",
+    "directory": "117"
   },
   "spinnerVerbs": {
     "mode": "replace",
@@ -44,6 +46,8 @@ Formal schema spec for moxie vibe JSON files. All built-in vibes meet these requ
 | `palette.accent` | string | 256-color ANSI code — bar mid-range |
 | `palette.warning` | string | 256-color ANSI code — bar high-range |
 | `palette.dim` | string | 256-color ANSI code — separators, quip text |
+| `palette.worktree` | string | *(optional)* 256-color ANSI code — worktree name. Falls back to `accent` |
+| `palette.directory` | string | *(optional)* 256-color ANSI code — working directory path. Falls back to `accent` |
 | `spinnerVerbs.mode` | string | Always `"replace"` |
 | `spinnerVerbs.verbs` | string[] | 15-20 verbs |
 | `quips.any` | string[] | 20-25 quips (always-active pool) |
@@ -112,6 +116,7 @@ Vibes can optionally include a `layout` object to control statusline rendering:
 |-------|--------|---------|--------|
 | `quipPosition` | `"right"` | `"right"` | Right-aligned quip with dynamic spacing (default) |
 | | `"inline"` | | Quip appears inline after branch, bullet-separated |
+| `showDirectory` | `true` / `false` | `true` | Show current working directory path (drive letter stripped) after git branch |
 
 **Inline layout**: `Guide ██████░░░░ 60% · main · The trail grows steeper.`
 
